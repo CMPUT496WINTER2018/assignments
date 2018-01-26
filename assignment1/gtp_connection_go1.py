@@ -29,8 +29,35 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
         """
         gtp_connection.GtpConnection.__init__(self, go_engine, board, outfile, debug_mode)
         self.commands["hello"] = self.hello_cmd
+        self.commands["score"] = self.score_cmd
     
 
     def hello_cmd(self, args):
         """ Dummy Hello Command """
         self.respond("Hello! " + self.go_engine.name)
+    
+    def score_cmd(self, args):
+        """ Scoring function for Assignment 1 """
+        
+        scoreBoard = self.board
+        for i in range(len(scoreBoard)):
+            if scoreBoard[i] == 0:
+                points,territory, scoreBoard = _explore_bfs(i)
+                for p in points:
+                    pass
+    
+    def _explore_bfs(self,point, scoreBoard):
+        Open = []
+        Territory = set()
+        Open.append(point)
+        Closed = set()
+        while Open:
+            v = Open.pop(0)
+            Closed.add(v)
+            for child in self._neighbors(v):
+                if scoreBoard[child+5] == 0 and child not in Closed:
+                    if child not in Open:
+                        Open.append(child)
+                elif scoreBoard[child+5] in [1,2]:
+                    Territory.add(child)
+        return Closed, Territory, scoreBoard
