@@ -39,12 +39,14 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
     def score_cmd(self, args):
         """ Scoring function for Assignment 1 """
         
-        scoreBoard = self.board
+        scoreBoard = self.board.board
         for i in range(len(scoreBoard)):
             if scoreBoard[i] == 0:
-                points,territory, scoreBoard = _explore_bfs(i)
+                points,territory, scoreBoard = self._explore_bfs(i, scoreBoard)
                 for p in points:
                     pass
+                
+        self.respond(str(scoreBoard))
     
     def _explore_bfs(self,point, scoreBoard):
         Open = []
@@ -55,9 +57,51 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
             v = Open.pop(0)
             Closed.add(v)
             for child in self._neighbors(v):
-                if scoreBoard[child+5] == 0 and child not in Closed:
-                    if child not in Open:
-                        Open.append(child)
-                elif scoreBoard[child+5] in [1,2]:
-                    Territory.add(child)
+                if self._in_bounds(scoreBoard, child+5):
+                    if scoreBoard[child+5] == 0 and child not in Closed:
+                        if child not in Open:
+                            Open.append(child)
+                    elif scoreBoard[child+5] in [1,2]:
+                        Territory.add(child)
         return Closed, Territory, scoreBoard
+    
+    # copied from simple_board.py
+    def _neighbors(self,point):
+        """
+        All neighbors of the point
+        Arguments
+        ---------
+        point
+
+        Returns
+        -------
+        points : list of int
+            coordinate of points which are neighbors of the given point
+        """
+        #row,col = self._point_to_coord(point)
+        #if 0 <= row <= self.size+1 and 0 <= col <= self.size+1:
+        return [point-1, point+1, point-self.board.NS, point+self.board.NS]
+        #else:
+        #    raise ValueError("This point is out of range!")
+    
+    def _in_bounds(self, scoreBoard, index):
+        """ 
+        Checks if in bounds 
+        
+        returns : True if in bounds, False if not
+        """
+        
+        try:
+            test = scoreBoard[index]
+            return True
+        except:
+            return False
+        
+        
+        
+        
+        
+        
+        
+        
+        

@@ -1,0 +1,39 @@
+= Go1
+
+= 2
+
+= 0.1
+
+= set_free_handicap komi showboard legal_moves quit protocol_version known_command score clear_board hello boardsize genmove list_commands name version play
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= [3 3 3 3 3 3 3 3 3 0 0 0 1 2 1 0 3 0 0 0 2 0 0 1 3 0 0 0 0 1 0 1 3 0 0 0 0
+ 0 0 0 3 0 0 2 0 1 0 0 3 0 0 0 0 0 0 2 3 0 0 0 0 0 0 0 3 3 3 3 3 3 3 3 3]
+
