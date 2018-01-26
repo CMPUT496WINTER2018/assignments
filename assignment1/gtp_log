@@ -4,7 +4,7 @@
 
 = 0.1
 
-= name set_free_handicap version play legal_moves genmove clear_board quit score known_command hello showboard protocol_version boardsize komi list_commands
+= hello known_command clear_board showboard komi play set_free_handicap version name legal_moves score quit protocol_version genmove list_commands boardsize
 
 = 
 
@@ -24,41 +24,11 @@
 
 = 
 
-= [3 3 3 3 3 3 3 9 2 9 2 9 3 9 9 2 9 9 3 9 9 9 9 9 3 9 9 1 9 9 3 9 1 9 1 9 3
- 3 3 3 3 3 3]
-[[9 2 9 2 9]
- [9 9 2 9 9]
- [9 9 9 9 9]
- [9 9 1 9 9]
- [9 1 9 1 9]]
-[{0, 4, 6, 7, 9, 10, 12, 13, 14, 15, 16, 18, 19, 21, 22, 24, 28}, {2}, {26}]
-[{1, 3, 8, 20, 25, 27}, {8, 1, 3}, {25, 27, 20}]
-
 = 
 
 = 
 
 = 
 
-= 
-
-= 
-
-= 
-
-= 
-
-= 
-
-= 
-
-= [3 3 3 3 3 3 3 9 2 9 9 9 3 9 9 2 2 2 3 9 9 9 9 9 3 9 9 1 9 9 3 9 1 9 1 9 3
- 3 3 3 3 3 3]
-[[9 2 9 9 9]
- [9 9 2 2 2]
- [9 9 9 9 9]
- [9 9 1 9 9]
- [9 1 9 1 9]]
-[{0, 6, 7, 12, 13, 14, 15, 16, 18, 19, 21, 22, 24, 28}, {2, 3, 4}, {26}]
-[{1, 8, 9, 10, 20, 25, 27}, {8, 1, 9, 10}, {25, 27, 20}]
+= W+2.5
 

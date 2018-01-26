@@ -41,24 +41,106 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
     def score_cmd(self, args):
         """ Scoring function for Assignment 1 """
         
-        pointArray = []
-        territoryArray = []
+        pointArray = []                         # holds the different points that make up territories 
+        territoryArray = []                     # holds the territory boarders 
+        correctionFactor = self.board.size+2    # adjustment factor for board to make computation easier 
+        blackScore = 0                          # score for black player 
+        whiteScore = 0                          # score for white player 
+        scoreBoard = self.board.board           # copy of board to manipulate 
         
-        correctionFactor = self.board.size+2
-        
-        scoreBoard = self.board.board
+        # go through board and run bfs to find territories 
         for i in range(len(scoreBoard)):
             if scoreBoard[i] == 0:
                 points,territory = self._explore_bfs(i-correctionFactor, scoreBoard, correctionFactor)
                 pointArray.append(points)
                 territoryArray.append(territory)
                 for p in points:
+                    # mark all with neutral territory = 9
                     scoreBoard[p+correctionFactor] = 9
                 
-        self.respond(str(scoreBoard)+"\n"+str(self.board.get_twoD_board())+"\n"+str(pointArray)+"\n"+str(territoryArray))
-        #self.respond(str(scoreBoard)+"\n"+str(self.board.get_empty_positions(1)))
+        # check which player it belongs to and change it to theirs
+        # Black territory = 1
+        # White territory = 2
+        # Neutral territory = 9
+        if len(territoryArray) > 1:
+            # multiple territories exist, need to determine who they belong to 
+            
+            for i in range(0, len(territoryArray)):
+                isBlack = False         # keeps track of if territory belongs black 
+                isWhite = False         # keeps track of if territory belongs white
+                colorSet = set()        # keeps track of colors in territory boarder 
+                
+                for point in territoryArray[i]:
+                    colorSet.add(scoreBoard[point + correctionFactor])
+                
+                if 1 in colorSet:
+                    isBlack = True 
+                if 2 in colorSet:
+                    isWhite = True
+                
+                if isBlack and not isWhite:
+                    # mark all black 
+                    for point in pointArray[i]:
+                        scoreBoard[point+correctionFactor] = 7
+                    
+                elif not isBlack and isWhite:
+                    # mark all white 
+                    for point in pointArray[i]:
+                        scoreBoard[point+correctionFactor] = 8
+                # else neutral and don't change them 
+        
+        # everything is accounted for or neutral territory 
+        # parse through board and count stones
+        whiteScore, blackScore = self._count_stones(scoreBoard)
+        
+        # determine winner 
+        if whiteScore > blackScore:
+            self.respond("W+"+str(whiteScore-blackScore))
+        elif whiteScore < blackScore:
+            self.respond("B+"+str(blackScore-whiteScore))
+        else:
+            self.respond("0")
+                
+        #self.respond(str(scoreBoard)+"\n"+str(self.komi)+"\n"+str(self.board.get_twoD_board())+"\n"+str(pointArray)+"\n"+str(territoryArray)+"\n"+str(whiteScore)+"\n"+str(blackScore))
+    
+    def _count_stones(self, scoreBoard):
+        """ 
+        Count the number of white and black stones on board + territories + komi 
+        
+        param :
+        
+        return :
+        """
+        whiteCount = 0
+        blackCount = 0
+        
+        for point in scoreBoard:
+            if point == 1:
+                blackCount += 1
+            elif point == 7:
+                blackCount += 1 
+            elif point == 2:
+                whiteCount += 1
+            elif point == 8:
+                whiteCount += 1
+            elif point == 9:
+                True
+            
+        whiteCount += self.komi
+            
+        return whiteCount, blackCount 
     
     def _explore_bfs(self, point, scoreBoard, correctionFactor):
+        """ 
+        Runs BFS search starting from point  
+        
+        param : point: index of point to start from 
+        param : scoreBoard: copy of board 
+        param : correctionFactor: amount to adjust index by (for walls)
+        
+        return : Closed: points in closed territory 
+        return : Territory: points that make up boarders of territory 
+        """
         Open = []
         Territory = set()
         Open.append(point)
@@ -67,7 +149,6 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
             v = Open.pop(0)
             Closed.add(v)
             for child in self._neighbors(v):
-                #if self._in_bounds(scoreBoard, child+correctionFactor):
                 if scoreBoard[child+correctionFactor] == 0 and child not in Closed:
                     if child not in Open:
                         Open.append(child)
@@ -75,7 +156,7 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
                     Territory.add(child)
         return Closed, Territory
     
-    # copied from simple_board.py
+    # copied from simple_board.py in util
     def _neighbors(self,point):
         """
         All neighbors of the point
@@ -94,18 +175,6 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
         #else:
         #    raise ValueError("This point is out of range!")
     
-    def _in_bounds(self, scoreBoard, index):
-        """ 
-        Checks if in bounds 
-        
-        returns : True if in bounds, False if not
-        """
-        
-        try:
-            test = scoreBoard[index]
-            return True
-        except:
-            return False
         
         
         
