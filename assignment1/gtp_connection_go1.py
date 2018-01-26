@@ -13,7 +13,9 @@ import numpy as np
 import re
 
 class GtpConnectionGo1(gtp_connection.GtpConnection):
-
+    
+    
+    
     def __init__(self, go_engine, board, outfile = 'gtp_log', debug_mode = False):
         """
         GTP connection of Go1
@@ -39,16 +41,24 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
     def score_cmd(self, args):
         """ Scoring function for Assignment 1 """
         
+        pointArray = []
+        territoryArray = []
+        
+        correctionFactor = self.board.size+2
+        
         scoreBoard = self.board.board
         for i in range(len(scoreBoard)):
             if scoreBoard[i] == 0:
-                points,territory, scoreBoard = self._explore_bfs(i, scoreBoard)
+                points,territory = self._explore_bfs(i-correctionFactor, scoreBoard, correctionFactor)
+                pointArray.append(points)
+                territoryArray.append(territory)
                 for p in points:
-                    pass
+                    scoreBoard[p+correctionFactor] = 9
                 
-        self.respond(str(scoreBoard))
+        self.respond(str(scoreBoard)+"\n"+str(self.board.get_twoD_board())+"\n"+str(pointArray)+"\n"+str(territoryArray))
+        #self.respond(str(scoreBoard)+"\n"+str(self.board.get_empty_positions(1)))
     
-    def _explore_bfs(self,point, scoreBoard):
+    def _explore_bfs(self, point, scoreBoard, correctionFactor):
         Open = []
         Territory = set()
         Open.append(point)
@@ -57,13 +67,13 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
             v = Open.pop(0)
             Closed.add(v)
             for child in self._neighbors(v):
-                if self._in_bounds(scoreBoard, child+5):
-                    if scoreBoard[child+5] == 0 and child not in Closed:
-                        if child not in Open:
-                            Open.append(child)
-                    elif scoreBoard[child+5] in [1,2]:
-                        Territory.add(child)
-        return Closed, Territory, scoreBoard
+                #if self._in_bounds(scoreBoard, child+correctionFactor):
+                if scoreBoard[child+correctionFactor] == 0 and child not in Closed:
+                    if child not in Open:
+                        Open.append(child)
+                elif scoreBoard[child+correctionFactor] in [1,2]:
+                    Territory.add(child)
+        return Closed, Territory
     
     # copied from simple_board.py
     def _neighbors(self,point):
