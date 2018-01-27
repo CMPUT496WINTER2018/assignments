@@ -4,7 +4,7 @@
 
 = 0.1
 
-= hello known_command clear_board showboard komi play set_free_handicap version name legal_moves score quit protocol_version genmove list_commands boardsize
+= hello score name legal_moves komi list_commands set_free_handicap protocol_version quit version clear_board showboard genmove play boardsize known_command
 
 = 
 
@@ -30,5 +30,22 @@
 
 = 
 
-= W+2.5
+= 
+
+= 
+
+= 
+
+= [3 3 3 3 3 3 3 0 0 0 2 0 3 1 1 0 2 0 3 0 1 0 2 0 3 1 0 1 2 0 3 0 1 0 2 0 3
+ 3 3 3 3 3 3]
+0.0
+[[0 0 0 2 0]
+ [1 1 0 2 0]
+ [0 1 0 2 0]
+ [1 0 1 2 0]
+ [0 1 0 2 0]]
+[{0, 1, 2, 8, 14}, {16, 10, 4, 28, 22}, {12}, {19}, {24}, {26}]
+[{3, 6, 7, 9, 13, 15, 20}, {9, 3, 27, 21, 15}, {18, 13, 6}, {25, 18, 20, 13}, {25, 18}, {25, 27, 20}]
+10.0
+9
 

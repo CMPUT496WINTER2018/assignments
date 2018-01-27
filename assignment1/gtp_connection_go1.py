@@ -59,11 +59,10 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
                     scoreBoard[p+correctionFactor] = 9
                 
         # check which player it belongs to and change it to theirs
-        # Black territory = 1
-        # White territory = 2
-        # Neutral territory = 9
+        # Black territory = 7; White territory = 8; Neutral territory = 9
         if len(territoryArray) > 1:
             # multiple territories exist, need to determine who they belong to 
+            # else neutral and don't change them 
             
             for i in range(0, len(territoryArray)):
                 isBlack = False         # keeps track of if territory belongs black 
@@ -87,11 +86,10 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
                     # mark all white 
                     for point in pointArray[i]:
                         scoreBoard[point+correctionFactor] = 8
-                # else neutral and don't change them 
         
         # everything is accounted for or neutral territory 
         # parse through board and count stones
-        whiteScore, blackScore = self._count_stones(scoreBoard)
+        whiteScore, blackScore = self._count_stones(scoreBoard, correctionFactor)
         
         # determine winner 
         if whiteScore > blackScore:
@@ -101,9 +99,7 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
         else:
             self.respond("0")
                 
-        #self.respond(str(scoreBoard)+"\n"+str(self.komi)+"\n"+str(self.board.get_twoD_board())+"\n"+str(pointArray)+"\n"+str(territoryArray)+"\n"+str(whiteScore)+"\n"+str(blackScore))
-    
-    def _count_stones(self, scoreBoard):
+    def _count_stones(self, scoreBoard, correctionFactor):
         """ 
         Count the number of white and black stones on board + territories + komi 
         
@@ -114,17 +110,19 @@ class GtpConnectionGo1(gtp_connection.GtpConnection):
         whiteCount = 0
         blackCount = 0
         
-        for point in scoreBoard:
-            if point == 1:
+        for i in range(correctionFactor,len(scoreBoard)):
+            if scoreBoard[i] == 1:
                 blackCount += 1
-            elif point == 7:
+            elif scoreBoard[i] == 7:
                 blackCount += 1 
-            elif point == 2:
+                scoreBoard[i] = 0
+            elif scoreBoard[i] == 2:
                 whiteCount += 1
-            elif point == 8:
+            elif scoreBoard[i] == 8:
                 whiteCount += 1
-            elif point == 9:
-                True
+                scoreBoard[i] = 0
+            elif scoreBoard[i] == 9:
+                scoreBoard[i] = 0
             
         whiteCount += self.komi
             
