@@ -1,0 +1,25 @@
+Script started on Mon 29 Jan 2018 03:44:40 PM MST
+]0;ah@ah: ~/496cmput/assignmentsah@ah:~/496cmput/assignments$ mkdir atTest[K[K[K[K[K1Test
+]0;ah@ah: ~/496cmput/assignmentsah@ah:~/496cmput/assignments$ cp a1.tgz a1Test/a1.tgz
+]0;ah@ah: ~/496cmput/assignmentsah@ah:~/496cmput/assignments$ cp util at[K1T1[Kest/util
+cp: omitting directory ‘util’
+]0;ah@ah: ~/496cmput/assignmentsah@ah:~/496cmput/assignments$ cd as[K1Test/
+]0;ah@ah: ~/496cmput/assignments/a1Testah@ah:~/496cmput/assignments/a1Test$ ls
+[0m[01;31ma1.tgz[0m  [01;34mutil[0m
+]0;ah@ah: ~/496cmput/assignments/a1Testah@ah:~/496cmput/assignments/a1Test$ tar -xvf a1.tgz 
+assignment1/
+assignment1/._assignment1-public-tests.gtp
+assignment1/readme.txt
+assignment1/._Go1.py
+assignment1/._gtp_connection_go1.py
+assignment1/assignment1-public-tests.gtp
+assignment1/gtp_connection_go1.py
+assignment1/Go1.py
+]0;ah@ah: ~/496cmput/assignments/a1Testah@ah:~/496cmput/assignments/a1Test$ ls
+[0m[01;31ma1.tgz[0m  [01;34massignment1[0m  [01;34mutil[0m
+]0;ah@ah: ~/496cmput/assignments/a1Testah@ah:~/496cmput/assignments/a1Test$ cd assignment1/
+]0;ah@ah: ~/496cmput/assignments/a1Test/assignment1ah@ah:~/496cmput/assignments/a1Test/assignment1$ gogui-regress -output "at[K1TestRe sults"v[K "python3 Go1.py" assignment1-public-tests.gtp 
+]0;ah@ah: ~/496cmput/assignments/a1Test/assignment1ah@ah:~/496cmput/assignments/a1Test/assignment1$ exit
+exit
+
+Script done on Mon 29 Jan 2018 03:48:16 PM MST
