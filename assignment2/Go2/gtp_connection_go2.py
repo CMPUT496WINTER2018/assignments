@@ -11,6 +11,7 @@ from board_util import GoBoardUtil, BLACK, WHITE, EMPTY, BORDER, FLOODFILL
 import gtp_connection
 import numpy as np
 import re
+import timeit
 
 class GtpConnectionGo2(gtp_connection.GtpConnection):
 
@@ -30,11 +31,18 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
         gtp_connection.GtpConnection.__init__(self, go_engine, board, outfile, debug_mode)
         self.commands["go_safe"] = self.safety_cmd
         self.argmap["go_safe"] = (1, 'Usage: go_safe {w,b}')
+        self.timelimit = 1
         self.commands["timelimit"] = self.timelimit_cmd
         self.commands["solve"] = self.solve_cmd
+        
     
     def timelimit_cmd(self, args):
         """ TO IMPLEMENT, takes arg: seconds """
+        try:
+            self.timelimit = int(args[0])
+            self.respond("")
+        except Exception as e:
+            self.respond('Error: {}'.format(str(e)))
     
     def solve_cmd(self, args):
         """ TO IMPLEMENT """
