@@ -30,7 +30,15 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
         gtp_connection.GtpConnection.__init__(self, go_engine, board, outfile, debug_mode)
         self.commands["go_safe"] = self.safety_cmd
         self.argmap["go_safe"] = (1, 'Usage: go_safe {w,b}')
-
+        self.commands["timelimit"] = self.timelimit_cmd
+        self.commands["solve"] = self.solve_cmd
+    
+    def timelimit_cmd(self, args):
+        """ TO IMPLEMENT, takes arg: seconds """
+    
+    def solve_cmd(self, args):
+        """ TO IMPLEMENT """
+    
     def safety_cmd(self, args):
         try:
             color= GoBoardUtil.color_to_int(args[0].lower())
