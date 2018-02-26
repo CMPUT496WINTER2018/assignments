@@ -34,11 +34,11 @@ class Go2():
         copy_board = GoBoardUtil.copyb2b(board, board)
         
         # depth limit
-        d = 7
-        
-        success, score = self.negamaxBoolean(copy_board, copy_board.current_player, komi, d)
-        print("!!!!!!!!!!!!!!!!!!", success, score)
-        return 1, "a1"
+        d = 10
+        print(copy_board.current_player, "!!!!")
+        success, move = self.negamaxBoolean(copy_board, copy_board.current_player, komi, d)
+        print("!!!!!!!!!!!!!!!!!!", success, move)
+        return success, move
     
     def negamaxBoolean(self, board, color, komi, d):
         
@@ -75,7 +75,7 @@ class Go2():
             print("\n", m, move, color, success)
             
             if success:
-                return True, str(points) + str([m])
+                return True, m
             
             if losing_moves == []:
                 losing_moves = str(points) + str([m])

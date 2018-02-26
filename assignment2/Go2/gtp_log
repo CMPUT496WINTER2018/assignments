@@ -4,7 +4,7 @@
 
 = 0.1
 
-= solve legal_moves quit play showboard version timelimit genmove name clear_board komi list_commands protocol_version go_safe boardsize score known_command set_free_handicap
+= genmove known_command protocol_version boardsize timelimit name clear_board score komi solve version quit showboard legal_moves go_safe set_free_handicap list_commands play
 
 = 
 
@@ -24,36 +24,293 @@
 
 = 
 
+= 
+
+= 
+
+2 !!!!
+
+ a2 9 2 True
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 True
+
+ a3 13 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
 
  b1 6 2 True
 
  a2 9 1 False
 
- c1 7 2 True
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
 
  b1 6 1 False
 
- a2 9 2 True
-
- c1 7 1 False
-
- a2 9 2 True
-
- c2 11 1 False
-
- a1 5 2 True
-
- c3 15 1 False
-
- a1 5 2 True
+ b2 10 1 False
 
  b3 14 1 False
 
- b3 14 2 True
+ c1 7 1 False
+
+ c2 11 1 False
 
  c3 15 1 False
 
+ a1 5 2 True
+
+ a3 13 1 False
+
  a2 9 2 True
-!!!!!!!!!!!!!!!!!! True 3.5['b1']['a2']['a1']['c3']['a1']['b3']['a2']
-= b a1
+
+ a3 13 1 False
+
+ b2 10 2 True
+
+ a3 13 1 False
+
+ a3 13 1 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 True
+
+ a3 13 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ b2 10 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a3 13 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ a2 9 1 False
+
+ a3 13 1 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 True
+
+ a3 13 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ b2 10 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a3 13 1 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 True
+
+ a3 13 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ b2 10 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ b3 14 2 True
+!!!!!!!!!!!!!!!!!! True b3
+= b
 

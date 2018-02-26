@@ -53,8 +53,10 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
             self.respond("unknown")
         elif move == None:
             self.respond(GoBoardUtil.int_to_color(winner))
-        else:
+        elif winner == self.board.current_player:
             self.respond(GoBoardUtil.int_to_color(winner) + " " + move)
+        else:
+            self.respond(GoBoardUtil.int_to_color(winner))
         
     def safety_cmd(self, args):
         try:
