@@ -37,7 +37,9 @@ class Go2():
         return 1, "a1"
     
     def negamaxBoolean(self, board, color, komi):
+        
         LegalMoves = GoBoardUtil.generate_legal_moves(board, color).split()
+        
         if len(LegalMoves) == 0:
             winning_color, score = board.score(komi)
             if winning_color == color:
@@ -47,24 +49,32 @@ class Go2():
             
         losing_moves = []
         
+        #print(LegalMoves)
+        #print(GoBoardUtil.generate_legal_moves(board, color))
+        
         for m in LegalMoves:
-            
-            print("\n", m)
+         
+        #for m in GoBoardUtil.generate_legal_moves(board, color).split():
             
             move = GoBoardUtil.move_to_coord(m, board.size)
             move = board._coord_to_point(move[0],move[1])
             
-            print("\n", move)
+            print("\n", m, move, color)
             
-            #board.move(m, color)   
+            board.move(move, color)   
             
-            success, points = self.negamaxBoolean(board, color, komi)
+            #print(board.board)
+            
+            success, points = self.negamaxBoolean(board, GoBoardUtil.opponent(color), komi)
             success = not success 
             board.undo_move()
+            
             if success:
-                return True, points + [m]
+                return True, str(points) + str([m])
+            
             if losing_moves == []:
-                losing_moves = points + [m]
+                losing_moves = str(points) + str([m])
+                
         return False, losing_moves
             
 def run():
