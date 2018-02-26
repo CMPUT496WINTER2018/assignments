@@ -32,20 +32,24 @@ class Go2():
     def solve(self, board, komi):
         copy_board = SimpleGoBoard(board.size)        
         copy_board = GoBoardUtil.copyb2b(board, board)
-        success, score = self.negamaxBoolean(copy_board, copy_board.current_player, komi)
-        print(success, score)
+        
+        # depth limit
+        d = 7
+        
+        success, score = self.negamaxBoolean(copy_board, copy_board.current_player, komi, d)
+        print("!!!!!!!!!!!!!!!!!!", success, score)
         return 1, "a1"
     
-    def negamaxBoolean(self, board, color, komi):
+    def negamaxBoolean(self, board, color, komi, d):
         
         LegalMoves = GoBoardUtil.generate_legal_moves(board, color).split()
         
-        if len(LegalMoves) == 0:
+        if len(LegalMoves) == 0 or d == 0:
             winning_color, score = board.score(komi)
             if winning_color == color:
                 return True, score
             else:
-                return False, None
+                return False, score
             
         losing_moves = []
         
@@ -59,15 +63,16 @@ class Go2():
             move = GoBoardUtil.move_to_coord(m, board.size)
             move = board._coord_to_point(move[0],move[1])
             
-            print("\n", m, move, color)
             
             board.move(move, color)   
             
             #print(board.board)
             
-            success, points = self.negamaxBoolean(board, GoBoardUtil.opponent(color), komi)
+            success, points = self.negamaxBoolean(board, GoBoardUtil.opponent(color), komi, d-1)
             success = not success 
             board.undo_move()
+            
+            print("\n", m, move, color, success)
             
             if success:
                 return True, str(points) + str([m])
