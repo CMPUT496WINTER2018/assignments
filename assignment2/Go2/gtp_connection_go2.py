@@ -12,6 +12,8 @@ import gtp_connection
 import numpy as np
 import re
 import timeit
+from simple_board import SimpleGoBoard
+
 
 class GtpConnectionGo2(gtp_connection.GtpConnection):
 
@@ -46,23 +48,13 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
     
     def solve_cmd(self, args):
         """ TO IMPLEMENT """
-        winner, move = self.solve()
+        winner, move = self.go_engine.solve(self.board)
         if winner == None:
             self.respond("unknown")
         elif move == None:
             self.respond(GoBoardUtil.int_to_color(color))
         else:
             self.respond(GoBoardUtil.int_to_color(color) + " " + move)
-            
-    def solve(self):
-        self.negamaxBoolean(GoBoardUtil.copyb2b(self.board, ))
-    
-    def negamaxBoolean(self, board, color):
-        if len(GoBoardUtil.generate_legal_moves(board)) == 0:
-            pass
-        
-        
-        
         
     def safety_cmd(self, args):
         try:

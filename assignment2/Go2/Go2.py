@@ -29,8 +29,19 @@ class Go2():
     def get_move(self,board, color):
         return GoBoardUtil.generate_random_move(board,color,True)
     
+    def solve(self, board):
+        copy_board = SimpleGoBoard(board.size)        
+        copy_board = GoBoardUtil.copyb2b(board, board)
+        self.negamaxBoolean(copy_board, copy_board.current_player)
     
-
+    def negamaxBoolean(self, board, color):
+        LegalMoves = GoBoardUtil.generate_legal_moves(board, color).split()
+        if len(LegalMoves) == 0:
+            return
+            
+        for m in LegalMoves:
+            pass    
+    
 def run():
     """
     start the gtp connection and wait for commands.

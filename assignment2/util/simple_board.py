@@ -17,7 +17,6 @@ import numpy as np
 import copy
 from board_util import GoBoardUtil, BLACK, WHITE, EMPTY, BORDER, FLOODFILL 
 import sys
-# The default recursion limit may be too small for search 
 sys.setrecursionlimit(1000000)
 
 class SimpleGoBoard(object):
@@ -30,6 +29,7 @@ class SimpleGoBoard(object):
         Return:
         color
         """
+        previous_pass=self.num_pass
         move_inspection, msg, caps = self._play_move(point,color)
         if not move_inspection:
             return False
@@ -38,6 +38,7 @@ class SimpleGoBoard(object):
             self.moves.append(point)
             self.ko_constraints.append(self.ko_constraint)
             self.captured_stones.append(caps)
+            self.pass_record.append(previous_pass)
             # update played and captured positions to the empty positions
             if point:
                 self._empty_positions.remove(point)
@@ -51,8 +52,10 @@ class SimpleGoBoard(object):
         last_point = self.moves.pop()
         self.ko_constraint = self.ko_constraints.pop()
         caps = self.captured_stones.pop()
+        self.num_pass=self.pass_record.pop()
         if last_point != None:
             self.board[last_point] = EMPTY
+            self.liberty_dp[last_point] = -1
             self._empty_positions.append(last_point)
             c = self.current_player
             for p in caps:
@@ -161,6 +164,7 @@ class SimpleGoBoard(object):
         self.moves = [] # stack of moves
         self.ko_constraints = [] # stack of ko constraines
         self.captured_stones = [] # stacke of captured stones
+        self.pass_record = []
         """
         The board array is one-dimensional 
         Conversion from row, col format: see _coord_to_point function
@@ -271,9 +275,9 @@ class SimpleGoBoard(object):
         return eye_color
     
     """
-------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------
     helper functions for playing a move!
-   ------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------
     """
     def _is_eyeish(self,point):
         """
@@ -352,12 +356,10 @@ class SimpleGoBoard(object):
         neighbors = self._neighbors(point)
         for n in neighbors:
             if fboard[n] == EMPTY:
-                self.liberty_dp[point] = n
                 return True,n
             if fboard[n] == color:
                 res,lp=self._liberty_flood_rec(fboard,n,color)
                 if res:
-                    self.liberty_dp[point] = lp
                     return True, lp
         return False, None
 
@@ -376,11 +378,14 @@ class SimpleGoBoard(object):
         """
         dp_point=self.liberty_dp[point]
         if dp_point != -1 and self.board[dp_point] == EMPTY:
-            return True, None
+            return True, dp_point
         fboard = np.array(self.board, copy=True)
         color = fboard[point]
-        res,_ = self._liberty_flood_rec(fboard,point,color)
-        return res, fboard
+        res,lp = self._liberty_flood_rec(fboard,point,color)
+        if(res==True):
+            return res, lp
+        else:
+            return res, fboard
 
 
     def _flood_fill(self, point):
@@ -465,20 +470,28 @@ class SimpleGoBoard(object):
                         self.liberty_dp[cap_inds] = -1
                         self.board[cap_inds] = EMPTY
         self.ko_constraint = single_captures[0] if in_enemy_eye and len(single_captures) == 1 else None
-        if (not self.check_suicide) or self._liberty_flood(point)[0]:
-            #non suicidal move
+        if (not self.check_suicide):
+            #not check suicidal move
             c = self._point_to_coord(point)
             msg = "Playing a move with %s color in the row and column %d %d is permitted"%(color,c[0],c[1])
             return True, msg, caps
         else:
-            # undoing the move because of being suicidal
-            # think cap_inds must be None?
-            self.board[point] = EMPTY
-            if cap_inds!= None:
-                self.board[cap_inds] = GoBoardUtil.opponent(color)
-            c = self._point_to_coord(point)
-            msg = "Suicide move with color %s in the row and column: %d %d "%(color, c[0],c[1])
-            return False, msg, None
+            res,lp=self._liberty_flood(point)
+            if res==True:
+                #non suicidal move
+                self.liberty_dp[point]=lp
+                c = self._point_to_coord(point)
+                msg = "Playing a move with %s color in the row and column %d %d is permitted"%(color,c[0],c[1])
+                return True, msg, caps
+            else:
+                # undoing the move because of being suicidal
+                # think cap_inds must be None?
+                self.board[point] = EMPTY
+                if cap_inds!= None:
+                    self.board[cap_inds] = GoBoardUtil.opponent(color)
+                c = self._point_to_coord(point)
+                msg = "Suicide move with color %s in the row and column: %d %d "%(color, c[0],c[1])
+                return False, msg, None
     
     def _diag_neighbors(self, point):
         """
@@ -677,11 +690,11 @@ class SimpleGoBoard(object):
         S_eyes = {} # For each block, record one point eyes it connects
         
         # find E
-        for x in range(1, self.size+1):
-            for y in range(1, self.size+1):
-                point = self._coord_to_point(x,y)
-                if self.is_eye(point, color):
-                    E[point] = set()
+        empty_points = self.get_empty_points()
+        for point in empty_points:
+            if self.is_eye(point, color):
+                E[point] = set()
+    
         # find S
         anchor_dic = {}
         for x in range(1, self.size+1):
