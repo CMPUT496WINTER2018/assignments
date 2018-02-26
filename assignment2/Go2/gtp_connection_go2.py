@@ -55,10 +55,10 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
             self.respond(GoBoardUtil.int_to_color(color) + " " + move)
             
     def solve(self):
-        pass
+        self.negamaxBoolean(GoBoardUtil.copyb2b(self.board, ))
     
-    def negamaxBoolean(self, state):
-        if len(GoBoardUtil.generate_legal_moves()) == 0:
+    def negamaxBoolean(self, board, color):
+        if len(GoBoardUtil.generate_legal_moves(board)) == 0:
             pass
         
         
