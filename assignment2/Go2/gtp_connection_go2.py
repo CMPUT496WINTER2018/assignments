@@ -49,14 +49,12 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
     def solve_cmd(self, args):
         """ TO IMPLEMENT """
         winner, move = self.go_engine.solve(self.board, self.go_engine.komi)
-        if winner == None:
-            self.respond("unknown")
-        elif move == None:
+        if winner == GoBoardUtil.opponent(self.board.current_player):
             self.respond(GoBoardUtil.int_to_color(winner))
         elif winner == self.board.current_player:
             self.respond(GoBoardUtil.int_to_color(winner) + " " + move)
         else:
-            self.respond(GoBoardUtil.int_to_color(winner))
+            self.respond("unknown")
         
     def safety_cmd(self, args):
         try:

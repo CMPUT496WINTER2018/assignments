@@ -4,7 +4,21 @@
 
 = 0.1
 
-= genmove known_command protocol_version boardsize timelimit name clear_board score komi solve version quit showboard legal_moves go_safe set_free_handicap list_commands play
+= version boardsize go_safe set_free_handicap known_command clear_board list_commands quit score komi legal_moves protocol_version name play solve genmove showboard timelimit
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
 
 = 
 
@@ -30,287 +44,3519 @@
 
 2 !!!!
 
- a2 9 2 True
+ b3 14 1 True
 
- a1 5 1 False
-
- a3 13 1 False
-
- b1 6 1 True
-
- a1 5 2 False
-
- a1 5 1 False
-
- b1 6 1 False
-
- b2 10 1 False
+ b2 10 2 False
 
  b3 14 1 True
 
  a3 13 2 False
 
- a1 5 1 False
+ a3 13 1 True
 
- a3 13 1 False
+ b3 14 2 False
 
- b2 10 1 False
+ b2 10 1 True
 
- b3 14 1 False
+ b3 14 2 False
 
- c1 7 1 False
+ a1 5 1 True
 
- c2 11 1 False
-
- c3 15 1 False
-
- b1 6 2 True
-
- a2 9 1 False
-
- a3 13 2 True
-
- a2 9 1 False
-
- a2 9 1 False
-
- b1 6 1 False
-
- b2 10 1 False
-
- b3 14 1 False
-
- c1 7 1 False
-
- c2 11 1 False
-
- c3 15 1 False
-
- a1 5 2 True
-
- a3 13 1 False
-
- a2 9 2 True
-
- a3 13 1 False
-
- b2 10 2 True
-
- a3 13 1 False
-
- a3 13 1 False
-
- b1 6 1 True
-
- a1 5 2 False
-
- a1 5 1 False
-
- b1 6 1 False
-
- b2 10 1 False
+ a3 13 2 False
 
  b3 14 1 True
 
  a3 13 2 False
 
- a1 5 1 False
+ b3 14 1 True
 
- a3 13 1 False
+ b2 10 2 False
 
- b2 10 1 False
+ b2 10 1 True
 
- b3 14 1 False
+ b3 14 2 False
 
- c1 7 1 False
+ a3 13 1 True
 
- c2 11 1 False
+ b3 14 2 False
 
- c3 15 1 False
+ a1 5 1 True
 
- b1 6 2 True
-
- a2 9 1 False
-
- b2 10 2 True
-
- a2 9 1 False
-
- a2 9 1 False
-
- a3 13 1 False
-
- b1 6 1 False
-
- b3 14 1 False
-
- c1 7 1 False
-
- c2 11 1 False
-
- c3 15 1 False
-
- a1 5 2 True
-
- b2 10 1 False
-
- a2 9 2 True
-
- b2 10 1 False
-
- a3 13 2 True
-
- b2 10 1 False
-
- a1 5 2 True
-
- a2 9 1 False
-
- a3 13 1 False
-
- b1 6 1 True
-
- a1 5 2 False
-
- a1 5 1 False
-
- b1 6 1 False
-
- b2 10 1 False
+ b2 10 2 False
 
  b3 14 1 True
 
  a3 13 2 False
 
- a1 5 1 False
+ a3 13 1 True
 
- a3 13 1 False
+ b3 14 2 False
 
- b2 10 1 False
-
- b3 14 1 False
-
- c1 7 1 False
-
- c2 11 1 False
-
- c3 15 1 False
-
- b1 6 2 True
-
- a2 9 1 False
-
- a3 13 2 True
-
- a2 9 1 False
-
- a2 9 1 False
-
- b1 6 1 False
-
- b2 10 1 False
-
- b3 14 1 False
-
- c1 7 1 False
-
- c2 11 1 False
-
- c3 15 1 False
-
- a1 5 2 True
-
- a3 13 1 False
-
- a2 9 2 True
-
- a3 13 1 False
-
- b2 10 2 True
-
- a2 9 1 False
-
- a2 9 2 True
-
- b2 10 1 False
-
- a1 5 2 True
-
- a3 13 1 False
-
- a3 13 1 False
-
- b1 6 1 True
-
- a1 5 2 False
-
- a1 5 1 False
-
- b1 6 1 False
-
- b2 10 1 False
-
- b3 14 1 True
+ b2 10 1 True
 
  a3 13 2 False
 
- a1 5 1 False
+ b3 14 1 True
 
- a3 13 1 False
+ b2 10 2 False
+
+ b2 10 1 True
+
+ b3 14 2 False
+
+ a3 13 1 True
+
+ b2 10 2 False
+
+ a1 5 1 True
+
+ b3 14 2 False
+
+ a2 9 1 True
+
+ a1 5 2 False
 
  b2 10 1 False
 
  b3 14 1 False
 
- c1 7 1 False
+ a3 13 1 False
 
- c2 11 1 False
+ b2 10 1 False
 
- c3 15 1 False
+ a2 9 2 True
 
- b1 6 2 True
-
- a2 9 1 False
+ b3 14 1 False
 
  b2 10 2 True
 
- a2 9 1 False
+ c1 7 1 False
+
+ a3 13 2 True
+
+ a1 5 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ b2 10 1 True
+
+ a1 5 2 False
+
+ b2 10 1 True
+
+ a2 9 2 False
 
  a2 9 1 False
-
- a3 13 1 False
-
- b1 6 1 False
 
  b3 14 1 False
 
  c1 7 1 False
 
- c2 11 1 False
-
- c3 15 1 False
-
- a1 5 2 True
-
- b2 10 1 False
-
- a2 9 2 True
-
- b2 10 1 False
-
- a3 13 2 True
-
- a2 9 1 False
-
- a2 9 2 True
+ b2 10 2 True
 
  a3 13 1 False
-
- a1 5 2 True
-
- b2 10 1 False
 
  b3 14 2 True
-!!!!!!!!!!!!!!!!!! True b3
+
+ a1 5 1 False
+
+ b3 14 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a3 13 1 False
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b3 14 1 False
+
+ a3 13 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ a3 13 1 False
+
+ b3 14 1 False
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b3 14 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ a3 13 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ a3 13 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ b3 14 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a3 13 2 True
+
+ b2 10 1 False
+
+ a3 13 1 False
+
+ b2 10 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a3 13 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ b3 14 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ b2 10 2 True
+
+ a3 13 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a3 13 2 True
+
+ b2 10 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 False
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a3 13 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a3 13 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a3 13 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a3 13 1 False
+
+ b1 6 1 False
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ a3 13 2 True
+!!!!!!!!!!!!!!!!!! True a3
 = b
+
+= 
+
+2 !!!!
+
+ b1 6 1 False
+
+ a3 13 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+!!!!!!!!!!!!!!!!!! True c1
+= b
+
+= 
+
+= 
+
+= 
+
+= a2
+
+= 
+
+= b1
+
+1 !!!!
+
+ c1 7 1 False
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ a2 9 1 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ a3 13 1 True
+
+ a2 9 2 False
+
+ a2 9 1 False
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ b1 6 1 False
+
+ a3 13 1 True
+
+ a2 9 2 False
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ a1 5 1 False
+
+ c2 11 2 True
+
+ a3 13 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ a3 13 1 False
+
+ a3 13 2 True
+
+ b2 10 1 False
+
+ a3 13 2 True
+
+ b3 14 1 False
+
+ a3 13 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ b3 14 1 False
+
+ b1 6 2 True
+
+ a3 13 1 False
+
+ c2 11 2 True
+
+ a1 5 1 False
+
+ b3 14 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ a3 13 1 False
+
+ a3 13 2 True
+
+ b2 10 1 False
+
+ a3 13 2 True
+
+ b3 14 1 False
+
+ a3 13 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b3 14 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ a1 5 1 False
+
+ b1 6 1 False
+
+ c3 15 1 False
+
+ c2 11 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ c2 11 2 True
+
+ b1 6 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ a2 9 1 True
+
+ b1 6 2 False
+
+ c2 11 1 True
+
+ a1 5 2 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ c3 15 1 True
+
+ c2 11 2 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ c2 11 1 True
+
+ c3 15 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ c3 15 1 True
+
+ c2 11 2 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ c2 11 1 True
+
+ c3 15 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ a2 9 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ b1 6 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b3 14 1 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a3 13 1 True
+
+ a2 9 2 False
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ a1 5 1 False
+
+ a2 9 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ c1 7 1 False
+
+ b3 14 1 False
+
+ b1 6 1 False
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ b1 6 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ a2 9 1 True
+
+ b1 6 2 False
+
+ b3 14 1 True
+
+ a1 5 2 False
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ c3 15 1 True
+
+ b3 14 2 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ b3 14 1 True
+
+ c3 15 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ c3 15 1 True
+
+ b3 14 2 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ b3 14 1 True
+
+ c3 15 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a2 9 2 True
+
+ a1 5 1 False
+
+ b1 6 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ c1 7 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b3 14 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ a2 9 1 True
+
+ b1 6 2 False
+
+ b3 14 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ c1 7 1 True
+
+ a1 5 2 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+!!!!!!!!!!!!!!!!!! False b3['a1']
+= unknown
+
+= 
+
+= b3
+
+1 !!!!
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ a2 9 1 True
+
+ b1 6 2 False
+
+ c3 15 1 True
+
+ a1 5 2 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ b1 6 1 False
+
+ a3 13 1 True
+
+ a2 9 2 False
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ a1 5 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+!!!!!!!!!!!!!!!!!! False a1['c1']
+= unknown
+
+1 !!!!
+
+ a2 9 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a2 9 2 False
+
+ b1 6 1 True
+
+ a1 5 2 False
+
+ a1 5 1 True
+
+ b1 6 2 False
+
+ a2 9 1 True
+
+ b1 6 2 False
+
+ c3 15 1 True
+
+ a1 5 2 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ b1 6 1 False
+
+ a3 13 1 True
+
+ a2 9 2 False
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ b3 14 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ a1 5 1 False
+
+ a2 9 1 False
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+!!!!!!!!!!!!!!!!!! False a1['c1']
+= unknown
+
+= 
+
+= a3
+
+1 !!!!
+
+ c2 11 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ a3 13 1 False
+
+ c2 11 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ b3 14 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b3 14 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ c2 11 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ a3 13 1 False
+
+ c2 11 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ b2 10 1 False
+
+ b3 14 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ b3 14 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ a3 13 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ b3 14 1 False
+
+ c2 11 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ c3 15 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c1 7 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c1 7 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ b3 14 1 False
+
+ a2 9 1 False
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ b3 14 1 False
+
+ c2 11 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ c3 15 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c1 7 1 False
+
+ b3 14 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b3 14 1 False
+
+ b3 14 2 True
+
+ c1 7 1 False
+
+ b3 14 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a3 13 2 True
+
+ b3 14 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ a1 5 1 False
+!!!!!!!!!!!!!!!!!! False a2['a1']
+= unknown
+
+= 
+
+= a3
+
+1 !!!!
+
+ a2 9 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ a3 13 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ a1 5 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ c2 11 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ c2 11 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ c3 15 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ c3 15 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ b1 6 1 False
+
+ a3 13 1 True
+
+ a2 9 2 False
+
+ a2 9 1 True
+
+ a3 13 2 False
+
+ b3 14 1 True
+
+ a2 9 2 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a2 9 2 True
+
+ a1 5 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ a2 9 1 False
+
+ b2 10 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ b1 6 1 False
+
+ b3 14 1 True
+
+ a3 13 2 False
+
+ a3 13 1 True
+
+ b3 14 2 False
+
+ a2 9 1 True
+
+ b3 14 2 False
+
+ c1 7 1 True
+!!!!!!!!!!!!!!!!!! True c1
+= b c1
+
+= 
+
+= a2
+
+1 !!!!
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ a1 5 1 False
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b1 6 1 False
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ c3 15 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c3 15 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ b1 6 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b2 10 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c1 7 1 False
+
+ a1 5 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ b1 6 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ b2 10 1 False
+
+ a3 13 2 True
+
+ a2 9 1 False
+
+ a2 9 2 True
+
+ a3 13 1 False
+
+ a2 9 2 True
+
+ b1 6 1 False
+
+ a2 9 2 True
+
+ b3 14 1 False
+
+ a2 9 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b1 6 2 True
+
+ c1 7 1 False
+
+ c2 11 2 True
+
+ b2 10 1 False
+
+ b2 10 2 True
+
+ c2 11 1 False
+
+ b2 10 2 True
+
+ c3 15 1 False
+
+ c1 7 2 True
+
+ b2 10 1 False
+
+ c2 11 2 True
+
+ c1 7 1 False
+
+ c1 7 2 True
+
+ c2 11 1 False
+
+ c1 7 2 True
+
+ c3 15 1 False
+
+ b2 10 2 True
+
+ c1 7 1 False
+
+ b1 6 2 True
+
+ c2 11 1 False
+
+ a1 5 2 True
+
+ c3 15 1 False
+
+ b3 14 2 True
+
+ b1 6 1 False
+
+ a3 13 1 True
+
+ a2 9 2 False
+
+ a2 9 1 True
+
+ a3 13 2 False
+
+ b3 14 1 True
+!!!!!!!!!!!!!!!!!! True b3
+= b b3
+
+= 
+
+= a2
+
+1 !!!!
+
+ a3 13 1 True
+!!!!!!!!!!!!!!!!!! True a3
+= b a3
+
+= 
+
+= pass
 
