@@ -1,0 +1,26 @@
+= Go2
+
+= 2
+
+= 0.1
+
+= timelimit name protocol_version legal_moves list_commands play set_free_handicap score clear_board solve version go_safe genmove known_command quit boardsize showboard komi
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= 
+
+= b a1
+

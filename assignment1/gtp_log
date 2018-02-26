@@ -4,7 +4,7 @@
 
 = 0.1
 
-= list_commands showboard set_free_handicap known_command hello clear_board name play version score quit genmove legal_moves boardsize protocol_version komi
+= boardsize play score quit showboard genmove name hello legal_moves version list_commands komi protocol_version known_command set_free_handicap clear_board
 
 = 
 
@@ -12,7 +12,15 @@
 
 = 
 
-? Unknown command
+= 
+
+= 
+
+= 
+
+= 
+
+= 
 
 = 
 
