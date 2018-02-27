@@ -14,9 +14,12 @@ import re
 import timeit
 from simple_board import SimpleGoBoard
 
+TIMELIMIT = 1
 
 class GtpConnectionGo2(gtp_connection.GtpConnection):
-
+    
+    #timelimit = 1
+    
     def __init__(self, go_engine, board, outfile = 'gtp_log', debug_mode = False):
         """
         GTP connection of Go1
@@ -33,15 +36,15 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
         gtp_connection.GtpConnection.__init__(self, go_engine, board, outfile, debug_mode)
         self.commands["go_safe"] = self.safety_cmd
         self.argmap["go_safe"] = (1, 'Usage: go_safe {w,b}')
-        self.timelimit = 1
+        #self.timelimit = 1
         self.commands["timelimit"] = self.timelimit_cmd
         self.commands["solve"] = self.solve_cmd
         
-    
     def timelimit_cmd(self, args):
         """ TO IMPLEMENT, takes arg: seconds """
         try:
-            self.timelimit = int(args[0])
+            if int(args[0]) >= 1 and int(args[0]) <= 100:
+                TIMELIMIT = int(args[0])
             self.respond("")
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))

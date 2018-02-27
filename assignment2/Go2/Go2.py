@@ -2,11 +2,11 @@
 # Set the path to your python3 above
 
 # Set up relative path for util; sys.path[0] is directory of current program
-import os, sys
+import os, sys, time
 utilpath = sys.path[0] + "/../util/"
 sys.path.append(utilpath)
 
-from gtp_connection_go2 import GtpConnectionGo2
+from gtp_connection_go2 import GtpConnectionGo2, TIMELIMIT
 from board_util import GoBoardUtil
 from simple_board import SimpleGoBoard
 
@@ -35,16 +35,27 @@ class Go2():
         
         # depth limit
         d = 10
-        print(copy_board.current_player, "!!!!")
-        success, move = self.negamaxBoolean(copy_board, copy_board.current_player, komi, d)
-        print("!!!!!!!!!!!!!!!!!!", success, move)
+        #print(copy_board.current_player, "!!!!", GtpConnectionGo2.timelimit, "$$$$$$$$$$$")
+        
+        #set up time 
+        timelimit = time.time() + TIMELIMIT #GtpConnectionGo2.timelimit
+        print(TIMELIMIT, time.time(), timelimit, "!!!")
+        
+        success, move = self.negamaxBoolean(copy_board, copy_board.current_player, komi, timelimit)
+        #print("!!!!!!!!!!!!!!!!!!", success, move)
+        
+        print(time.time(), timelimit)
+        
         return success, move
     
-    def negamaxBoolean(self, board, color, komi, d):
+    def negamaxBoolean(self, board, color, komi, timelimit):
         
         LegalMoves = GoBoardUtil.generate_legal_moves(board, color).split()
         
-        if len(LegalMoves) == 0 or d == 0:
+        if timelimit <= time.time():
+            return False, None
+        
+        if len(LegalMoves) == 0:
             winning_color, score = board.score(komi)
             if winning_color == color:
                 return True, score
@@ -59,6 +70,8 @@ class Go2():
         for m in LegalMoves:
          
         #for m in GoBoardUtil.generate_legal_moves(board, color).split():
+            if timelimit <= time.time():
+                return False, None
             
             move = GoBoardUtil.move_to_coord(m, board.size)
             move = board._coord_to_point(move[0],move[1])
@@ -68,11 +81,11 @@ class Go2():
             
             #print(board.board)
             
-            success, points = self.negamaxBoolean(board, GoBoardUtil.opponent(color), komi, d-1)
+            success, points = self.negamaxBoolean(board, GoBoardUtil.opponent(color), komi, timelimit)
             success = not success 
             board.undo_move()
             
-            print("\n", m, move, color, success)
+            #print("\n", m, move, color, success)
             
             if success:
                 return True, m
