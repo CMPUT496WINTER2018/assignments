@@ -67,9 +67,14 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
             color = 1
         else:
             color = 2
-            
-        winner, move = self.go_engine.solve_for_color(self.board, color, self.go_engine.komi)
-        return winner, move   
+        if winner == GoBoardUtil.opponent(self.board.current_player):
+            self.respond(GoBoardUtil.int_to_color(winner))
+        elif winner == self.board.current_player:
+            self.respond(GoBoardUtil.int_to_color(winner) + " " + move)
+        else:
+            self.respond("unknown")  
+  
+  
         
     def safety_cmd(self, args):
         try:
@@ -98,11 +103,14 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
         
         
         color, move = self.solve_cmd2(args[0])
+        print(color, move)
         
-        if color == args[0]:
+        if color == True:
+            print("solver")
             self.respond(move)
         
         else:
+            
             try:
                 board_color = args[0].lower()
                 color = GoBoardUtil.color_to_int(board_color)

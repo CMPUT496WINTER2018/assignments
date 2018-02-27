@@ -56,8 +56,6 @@ class Go2():
         copy_board = SimpleGoBoard(board.size)        
         copy_board = GoBoardUtil.copyb2b(board, board)
         
-        # depth limit
-        d = 10
         #print(copy_board.current_player, "!!!!", GtpConnectionGo2.timelimit, "$$$$$$$$$$$")
         
         #set up time 
