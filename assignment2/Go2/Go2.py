@@ -52,12 +52,31 @@ class Go2():
         
         return success, move
     
+    def solve_for_color(self, board, color, komi):
+        copy_board = SimpleGoBoard(board.size)        
+        copy_board = GoBoardUtil.copyb2b(board, board)
+        
+        # depth limit
+        d = 10
+        #print(copy_board.current_player, "!!!!", GtpConnectionGo2.timelimit, "$$$$$$$$$$$")
+        
+        #set up time 
+        timelimit = time.time() + self.TIMELIMIT #GtpConnectionGo2.timelimit
+        #print(self.TIMELIMIT, time.time(), timelimit, "!!!")
+        
+        success, move = self.negamaxBoolean(copy_board, color, komi, timelimit)
+        #print("!!!!!!!!!!!!!!!!!!", success, move)
+        
+        #print(time.time(), timelimit)
+        
+        return success, move    
+    
     def negamaxBoolean(self, board, color, komi, timelimit):
         
         LegalMoves = GoBoardUtil.generate_legal_moves(board, color).split()
         
         if timelimit <= time.time():
-            return False, None
+            return None, None
         
         if len(LegalMoves) == 0:
             winning_color, score = board.score(komi)
@@ -75,7 +94,7 @@ class Go2():
          
         #for m in GoBoardUtil.generate_legal_moves(board, color).split():
             if timelimit <= time.time():
-                return False, None
+                return None, None
             
             move = GoBoardUtil.move_to_coord(m, board.size)
             move = board._coord_to_point(move[0],move[1])
