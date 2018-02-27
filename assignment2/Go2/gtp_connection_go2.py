@@ -63,19 +63,21 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
     def solve_cmd2(self, args):
         """ TO IMPLEMENT """
         color = args[0]
+        print(color)
         if color == 'b':
             color = 1
         else:
             color = 2
-
+        print(color)
         winner, move = self.go_engine.solve_for_color(self.board, color, self.go_engine.komi)
+        print(winner, move)
             
         if winner == GoBoardUtil.opponent(self.board.current_player):
             return False
         elif winner == self.board.current_player:
             return move
         else:
-            return None
+            return -1
   
   
         
@@ -107,14 +109,19 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
         
         move = self.solve_cmd2(args[0])
         print(move)
-        if move != False and move != None:
-            move_temp = GoBoardUtil.move_to_coord(m, board.size)
-            move_temp = self.board._coord_to_point(move_temp[0],move_temp[1])                                              
+        
+        if move != False and move != -1:
+            
+            if move != None:
+                move_temp = GoBoardUtil.move_to_coord(move, self.board.size)
+                move_temp = self.board._coord_to_point(move_temp[0],move_temp[1])
+            else:
+                move_temp = move
             self.board.move(move_temp, color)              
             self.respond(move)
         
         else:
-            
+            # if it is False or -1
             try:
                 board_color = args[0].lower()
                 color = GoBoardUtil.color_to_int(board_color)

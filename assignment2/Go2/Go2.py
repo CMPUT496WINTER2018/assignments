@@ -72,9 +72,10 @@ class Go2():
     def negamaxBoolean(self, board, color, komi, timelimit):
         
         LegalMoves = GoBoardUtil.generate_legal_moves(board, color).split()
+        LegalMoves.append(None)
         
         if timelimit <= time.time():
-            return None, None
+            return -1, -1
         
         if len(LegalMoves) == 0:
             winning_color, score = board.score(komi)
@@ -92,11 +93,13 @@ class Go2():
          
         #for m in GoBoardUtil.generate_legal_moves(board, color).split():
             if timelimit <= time.time():
-                return None, None
+                return -1, -1
             
-            move = GoBoardUtil.move_to_coord(m, board.size)
-            move = board._coord_to_point(move[0],move[1])
-            
+            if m != None:
+                move = GoBoardUtil.move_to_coord(m, board.size)
+                move = board._coord_to_point(move[0],move[1])
+            else:
+                move = m
             
             board.move(move, color)   
             
