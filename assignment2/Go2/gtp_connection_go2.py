@@ -67,12 +67,15 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
             color = 1
         else:
             color = 2
+
+        winner, move = self.go_engine.solve_for_color(self.board, color, self.go_engine.komi)
+            
         if winner == GoBoardUtil.opponent(self.board.current_player):
-            self.respond(GoBoardUtil.int_to_color(winner))
+            return False
         elif winner == self.board.current_player:
-            self.respond(GoBoardUtil.int_to_color(winner) + " " + move)
+            return move
         else:
-            self.respond("unknown")  
+            return None
   
   
         
@@ -102,11 +105,12 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
         """
         
         
-        color, move = self.solve_cmd2(args[0])
-        print(color, move)
-        
-        if color == True:
-            print("solver")
+        move = self.solve_cmd2(args[0])
+        print(move)
+        if move != False and move != None:
+            move_temp = GoBoardUtil.move_to_coord(m, board.size)
+            move_temp = self.board._coord_to_point(move_temp[0],move_temp[1])                                              
+            self.board.move(move_temp, color)              
             self.respond(move)
         
         else:
