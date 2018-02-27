@@ -45,6 +45,7 @@ class GtpConnectionGo2(gtp_connection.GtpConnection):
         try:
             if int(args[0]) >= 1 and int(args[0]) <= 100:
                 TIMELIMIT = int(args[0])
+                self.go_engine.changeTimeLimit(TIMELIMIT)
             self.respond("")
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))

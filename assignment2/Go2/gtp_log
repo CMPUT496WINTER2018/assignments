@@ -4,7 +4,7 @@
 
 = 0.1
 
-= set_free_handicap version komi play score boardsize legal_moves protocol_version go_safe name quit solve showboard genmove timelimit list_commands clear_board known_command
+= go_safe quit name protocol_version legal_moves score genmove boardsize solve known_command version play clear_board timelimit list_commands showboard komi set_free_handicap
 
 = 
 
@@ -42,7 +42,15 @@
 
 = 
 
-1 1519690309.9863045 1519690310.9862978 !!!
-1519690311.0493188 1519690310.9862978
+= 
+
+= 
+
 = b a10
+
+= 
+
+= p18
+
+= unknown
 

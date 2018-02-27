@@ -6,11 +6,14 @@ import os, sys, time
 utilpath = sys.path[0] + "/../util/"
 sys.path.append(utilpath)
 
-from gtp_connection_go2 import GtpConnectionGo2, TIMELIMIT
+from gtp_connection_go2 import GtpConnectionGo2
 from board_util import GoBoardUtil
 from simple_board import SimpleGoBoard
 
 class Go2():
+    
+    TIMELIMIT = 1
+    
     def __init__(self):
         """
         Player that selects moves randomly from the set of legal moves.
@@ -25,6 +28,7 @@ class Go2():
         """
         self.name = "Go2"
         self.version = 0.1
+        
 
     def get_move(self,board, color):
         return GoBoardUtil.generate_random_move(board,color,True)
@@ -38,13 +42,13 @@ class Go2():
         #print(copy_board.current_player, "!!!!", GtpConnectionGo2.timelimit, "$$$$$$$$$$$")
         
         #set up time 
-        timelimit = time.time() + TIMELIMIT #GtpConnectionGo2.timelimit
-        print(TIMELIMIT, time.time(), timelimit, "!!!")
+        timelimit = time.time() + self.TIMELIMIT #GtpConnectionGo2.timelimit
+        #print(self.TIMELIMIT, time.time(), timelimit, "!!!")
         
         success, move = self.negamaxBoolean(copy_board, copy_board.current_player, komi, timelimit)
         #print("!!!!!!!!!!!!!!!!!!", success, move)
         
-        print(time.time(), timelimit)
+        #print(time.time(), timelimit)
         
         return success, move
     
@@ -94,6 +98,9 @@ class Go2():
                 losing_moves = str(points) + str([m])
                 
         return False, losing_moves
+    
+    def changeTimeLimit(self, new_limit):
+        self.TIMELIMIT = new_limit
             
 def run():
     """
