@@ -141,7 +141,7 @@ class Go3Player(object):
 
     # return True if can capture, otherwise return False
     def atari_capture(self):
-        if self.last_move == None:
+        if self.board.last_move == None:
             pass
         else:
             liberty, single_lib_point = self.find_liberty_points(self.board.last_move,self.board.current_player)
@@ -154,8 +154,8 @@ class Go3Player(object):
     def atari_defense(self):
         #run away
         moves = []
-        if self.last_move != None:
-            neighbors = self.board._neighbors(self.last_move)
+        if self.board.last_move != None:
+            neighbors = self.board._neighbors(self.board.last_move)
             for neighbor in neighbors:
                 if self.board.board[neighbor] == GoBoardUtil.opponent(self.board.current_player):
                     neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,GoBoardUtil.opponent(self.board.current_player))

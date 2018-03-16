@@ -421,28 +421,68 @@ class GtpConnection():
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
 
+
+    # modified from _liberty_point in simple_board.py
+    def find_liberty_points(self, point, color):
+        group_points = [point]
+        liberty = 0
+        met_points = [point]
+        while group_points:
+            p=group_points.pop()
+            met_points.append(p)
+            neighbors = board.neighbors_dic[p]
+            for n in neighbors:
+                if n not in met_points:
+                    assert board.board[n] != BORDER
+                    if board.board[n] == color: 
+                        group_points.append(n)
+                    elif board.board[n]==EMPTY:
+                        liberty += 1
+                        single_lib_point = n
+                    met_points.append(n)
+        if liberty == 1:
+            return liberty, single_lib_point
+        return liberty, None   
+
+
+
+    # return True if can capture, otherwise return False
+    def atari_capture(self):
+        if self.board.last_move == None:
+            pass
+        else:
+            liberty, single_lib_point = self.find_liberty_points(self.board.last_move,self.board.current_player)
+            if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
+                self.response("AtariCapture", GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS))
+                return True
+        return False
+                
+        
+    def atari_defense(self):
+        #run away
+        moves = []
+        if self.board.last_move != None:
+            neighbors = self.board._neighbors(self.board.last_move)
+            for neighbor in neighbors:
+                if self.board.board[neighbor] == GoBoardUtil.opponent(self.board.current_player):
+                    neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,GoBoardUtil.opponent(self.board.current_player))
+                    if neighbor_lib == 1 and not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
+                        moves.append(single_lib_points)
+            
+        if len(moves)>0:
+            self.response("AtariDefense", GoBoardUtil.sorted_point_string(moves, self.board.NS))
+            return True
+        return False
+        
+
+
     def policy_moves_cmd(self, args):
         """
         Return list of policy moves for the current_player of the board
         """
-        #print(self.board.board)
-        #moves = self.board.board
-        #for i in range(len(moves)):
-            #if moves[i] != 3:        
-                #if GoBoardUtil.selfatari_filter(self.board, i, 2):
-                    #print(i,True)
-                #else:
-                    #print(i,False)
         
-        #for i in range(len(moves)):
-            #if moves[i] != 3:
-                #print(self.board._liberty(i,1),'black')
-                #print(self.board._liberty(i,2),'white')
-
-        print(self.board.last_move)
-        print(self.board._neighbors(self.board.last_move))
-        print(self.board.current_player)
-        print(GoBoardUtil.opponent(self.board.current_player))
+        print(self.atari_capture())
+        print(self.atari_defense())
         
         policy_moves, type_of_move = GoBoardUtil.generate_all_policy_moves(self.board,
                                                         self.go_engine.use_pattern,
