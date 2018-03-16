@@ -440,8 +440,9 @@ class GtpConnection():
                 #print(self.board._liberty(i,2),'white')
 
         print(self.board.last_move)
-        
+        print(self.board._neighbors(self.board.last_move))
         print(self.board.current_player)
+        print(GoBoardUtil.opponent(self.board.current_player))
         
         policy_moves, type_of_move = GoBoardUtil.generate_all_policy_moves(self.board,
                                                         self.go_engine.use_pattern,

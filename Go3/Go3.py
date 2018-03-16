@@ -146,14 +146,27 @@ class Go3Player(object):
         else:
             liberty, single_lib_point = self.find_liberty_points(self.board.last_move,self.board.current_player)
             if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
-                self.response("AtariCapture", GoBoardUtil.sorted_point_string(single_lib_point, self.board.NS))
+                self.response("AtariCapture", GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS))
                 return True
         return False
                 
         
     def atari_defense(self):
-        self.last_move
-        self.response("AtariDefense", GoBoardUtil.sorted_point_string(points, self.board.NS))
+        #run away
+        moves = []
+        if self.last_move != None:
+            neighbors = self.board._neighbors(self.last_move)
+            for neighbor in neighbors:
+                if self.board.board[neighbor] == GoBoardUtil.opponent(self.board.current_player):
+                    neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,GoBoardUtil.opponent(self.board.current_player))
+                    if neighbor_lib == 1 and not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
+                        moves.append(single_lib_points)
+            
+        if len(moves)>0:
+            self.response("AtariDefense", GoBoardUtil.sorted_point_string(moves, self.board.NS))
+            return True
+        return False
+        
 
 def run():
     """
