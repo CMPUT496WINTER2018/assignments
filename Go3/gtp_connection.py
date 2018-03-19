@@ -461,6 +461,38 @@ class GtpConnection():
             return liberty, single_lib_point
         return liberty, None   
 
+    # NEW !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    def find_neighbors_liberty_points(self, point, color):
+        group_points = [point]
+        pointGroup = [point]
+        liberty = 0
+        met_points = [point]
+        while group_points:
+            p=group_points.pop()
+            met_points.append(p)
+            neighbors = self.board.neighbors_dic[p]
+            for n in neighbors:
+                if n not in met_points:
+                    assert self.board.board[n] != BORDER
+                    if self.board.board[n] == color: 
+                        group_points.append(n)
+                        pointGroup.append(n)
+                    # elif self.board.board[n]==EMPTY:
+                        # liberty += 1
+                        # single_lib_point = n
+                    met_points.append(n)
+        
+        for p in pointGroup:
+            neighbors = self.board.neighbors_dic[p]
+            for n in neighbors:
+                assert self.board.board[n] != BORDER
+                if self.board.board[n] != color and self.board.board[n] != EMPTY:
+                    liberty, single_lib_point = self.find_liberty_points(n, self.board.board[n])
+                    if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
+                        return liberty, single_lib_point
+        # if liberty == 1:
+            # return liberty, single_lib_point
+        return 0, None 
 
 
     # return True if can capture, otherwise return False
@@ -487,7 +519,15 @@ class GtpConnection():
                     neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,self.board.board[neighbor])
                     if neighbor_lib == 1 and not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
                         moves.append(single_lib_point)
-                    
+                        
+                    # NEW !!!!!!!!!!!!!!!!!!!!!1
+                 #   else:
+                  #      # check if any of the neigbours to block of opponents color have a liberty 
+                   #     num_liberties, single_lib_point = self.find_neighbors_liberty_points(neighbor,self.board.board[neighbor])
+                    #    print("!!!!!!!!!!!!!!!!")
+                     #   if num_liberties == 1:
+                      #      print("hello world!!", single_lib_point, GoBoardUtil.sorted_point_string(moves, self.board.NS), " ")
+                       #     moves.append(single_lib_point)
             
         if len(moves)>0:
 #            response2 = "AtariDefense " + GoBoardUtil.sorted_point_string(moves, self.board.NS)
