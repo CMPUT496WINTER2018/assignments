@@ -396,7 +396,7 @@ class GtpConnection():
             color : {0,1}
             board_color : {'b','w'}
         """
-
+        
         capt, cmove = self.atari_capture()
         defense, dmove = self.atari_defense()
 
@@ -470,9 +470,10 @@ class GtpConnection():
         else:
             liberty, single_lib_point = self.find_liberty_points(self.board.last_move,GoBoardUtil.opponent(self.board.current_player))
             if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
+                if not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
 #                response = "AtariCapture " + GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS)
 #                self.respond(response)
-                return True, GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS)
+                    return True, GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS)
         return False, None
                 
         
@@ -486,6 +487,7 @@ class GtpConnection():
                     neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,self.board.board[neighbor])
                     if neighbor_lib == 1 and not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
                         moves.append(single_lib_point)
+                    
             
         if len(moves)>0:
 #            response2 = "AtariDefense " + GoBoardUtil.sorted_point_string(moves, self.board.NS)
@@ -508,7 +510,7 @@ class GtpConnection():
            self.respond(response)
         
         elif defense:
-            response2 = "AtariDefense " + GoBoardUtil.sorted_point_string(moves, self.board.NS)
+            response2 = "AtariDefense " + dmove
             self.respond(response2)
         else:
             policy_moves, type_of_move = GoBoardUtil.generate_all_policy_moves(self.board,

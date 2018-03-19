@@ -24,12 +24,6 @@ move_select = args.moveselect
 simulations = args.simulations
 move_filter = args.movefilter
 
-
-
-
-
-
-
 # pair = (move, percentage)
 def byPercentage(pair):
     return pair[1]
