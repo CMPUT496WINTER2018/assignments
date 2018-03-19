@@ -1,0 +1,29 @@
+Script started on Mon 19 Mar 2018 04:38:50 PM MDT
+]0;ah@ah: ~/496cmput/assignments/testsah@ah:~/496cmput/assignments/tests$ tar -xvzf assignment3.tgz 
+assignment3-public-tests.gtp
+Go3/
+Go3/assignment3-public-tests.gtp
+Go3/gtp_connection.py
+Go3/Go3.py
+Go3/ucb.py
+Go3/PolicyPlayer.py
+util/
+util/gtp_connection.py
+util/pattern.py
+util/__pycache__/
+util/__pycache__/board_util.cpython-34.pyc
+util/__pycache__/simple_board.cpython-34.pyc
+util/__pycache__/pattern.cpython-34.pyc
+util/__pycache__/gtp_connection.cpython-34.pyc
+util/simple_board.py
+util/board_util.py
+]0;ah@ah: ~/496cmput/assignments/testsah@ah:~/496cmput/assignments/tests$ ls
+assignment3-public-tests.gtp  [0m[01;31massignment3.tgz[0m  [01;34mGo3[0m  presubmission.log  [01;34mutil[0m
+]0;ah@ah: ~/496cmput/assignments/testsah@ah:~/496cmput/assignments/tests$ cd Go3/
+]0;ah@ah: ~/496cmput/assignments/tests/Go3ah@ah:~/496cmput/assignments/tests/Go3$ ls
+assignment3-public-tests.gtp  Go3.py  gtp_connection.py  PolicyPlayer.py  ucb.py
+]0;ah@ah: ~/496cmput/assignments/tests/Go3ah@ah:~/496cmput/assignments/tests/Go3$ gogui-regress -output tests "python3 Go3.py --movef ilter --simulations=rulebased" assignment3-public-tests.gtp 
+]0;ah@ah: ~/496cmput/assignments/tests/Go3ah@ah:~/496cmput/assignments/tests/Go3$ exit
+exit
+
+Script done on Mon 19 Mar 2018 04:41:24 PM MDT
