@@ -407,8 +407,12 @@ class GtpConnection():
         elif defense:
 
             #print("DEFEND")
-            self.respond(dmove)
-        
+            dmove = dmove.split(" ")
+            if len(dmove) > 1:
+                self.respond(dmove[0])
+            else:
+                self.respond(dmove)
+            
         else:
 
             try:
@@ -417,6 +421,9 @@ class GtpConnection():
                 self.debug_msg("Board:\n{}\nko: {}\n".format(str(self.board.get_twoD_board()),
                                                               self.board.ko_constraint))
                 move = self.go_engine.get_move(self.board, color)
+                #moves = self.policy_moves_cmd([None])
+                #print(moves)
+                #move = moves[0]
                 if move is None:
                     self.respond("pass")
                     return
@@ -434,7 +441,7 @@ class GtpConnection():
                 move = self.board._point_to_coord(move)
                 board_move = GoBoardUtil.format_point(move)
                 self.respond(board_move)
-                
+
             except Exception as e:
                 self.respond('Error: {}'.format(str(e)))        
 
@@ -467,40 +474,65 @@ class GtpConnection():
         if self.board.last_move == None:
             pass
         else:
+            # look for where only 1 liberty 
             liberty, single_lib_point = self.find_liberty_points(self.board.last_move,GoBoardUtil.opponent(self.board.current_player))
             if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
                 if not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
-#                response = "AtariCapture " + GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS)
-#                self.respond(response)
+                    # can capture
                     return True, GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS)
+        # unable to capture
         return False, None
                 
         
     def atari_defense(self):
         #run away
         moves = []
+        # explore around last move to see if defense is needed
         if self.board.last_move != None:
             neighbors = self.board._neighbors(self.board.last_move)
             for neighbor in neighbors:
                 if self.board.board[neighbor] == self.board.current_player:
                     neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,self.board.board[neighbor])
+                    
+                    # found player needs to defend and add possible points to play to defend 
                     if neighbor_lib == 1 and not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
                         moves.append(single_lib_point)
-                    
-                    moreNeighbors = self.board._neighbors(neighbor)
-                    for n in moreNeighbors:
-                        if self.board.board[n] == GoBoardUtil.opponent(self.board.current_player):
-                            liberty, single_lib_point = self.find_liberty_points(n,GoBoardUtil.opponent(self.board.current_player))
-                            if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
-                                if not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
-                                    moves.append(single_lib_point)
+                    # add more defense points
+                    if neighbor_lib == 1:
+                        for stone in self.find_group(neighbor):
+                            # search for moves where we can increase our liberties and capture their stones
+                            moreNeighbors = self.board._neighbors(stone)
+                            for n in moreNeighbors:
+                                if self.board.board[n] == GoBoardUtil.opponent(self.board.current_player):
+                                    liberty, single_lib_point = self.find_liberty_points(n,self.board.board[n])
+                                    if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
+                                        if not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
+                                            if single_lib_point not in moves:
+                                                moves.append(single_lib_point)                    
             
         if len(moves)>0:
-#            response2 = "AtariDefense " + GoBoardUtil.sorted_point_string(moves, self.board.NS)
-#            self.respond(response2)
+            # found defense points
             return True, GoBoardUtil.sorted_point_string(moves, self.board.NS)
+        # did not find defense points
         return False, None
-        
+  
+    
+    def find_group(self,neighbor):
+        # bfs search of neighbors to look for defence captures 
+        group_points = [neighbor]
+        met_points = []
+        while group_points:
+            p=group_points.pop()
+            met_points.append(p)
+            neighbors = self.board.neighbors_dic[p]
+            for n in neighbors:
+                if n not in met_points:
+                    assert self.board.board[n] != BORDER
+                    if self.board.board[n] == self.board.board[neighbor]: 
+                        group_points.append(n)
+        return met_points
+    
+    
 
 
     def policy_moves_cmd(self, args):
@@ -511,13 +543,16 @@ class GtpConnection():
        	capt, cmove = self.atari_capture()
         defense, dmove = (self.atari_defense())
 	
+        # Call atari_capture to see if we can capture any stones
         if capt:
            response = "AtariCapture " + cmove
            self.respond(response)
         
+        # Call atari_defense to see if we need to run away or capture stones
         elif defense:
             response2 = "AtariDefense " + dmove
             self.respond(response2)
+        # Else use random or pattern policy
         else:
             policy_moves, type_of_move = GoBoardUtil.generate_all_policy_moves(self.board,
 		                                                    self.go_engine.use_pattern,
