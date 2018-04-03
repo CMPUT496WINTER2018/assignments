@@ -34,8 +34,9 @@ class GtpConnection():
         #self.stderr = sys.stderr
         sys.stdout = self
         self.go_engine = go_engine 
-        self.go_engine.komi = 0
+        self.go_engine.komi = 0.5
         self.board = board
+        self.in_tree_knowledge_options = ["probabilistic" ]
         self.commands = {
             "protocol_version": self.protocol_version_cmd,
             "quit": self.quit_cmd,
@@ -50,7 +51,6 @@ class GtpConnection():
             "genmove": self.genmove_cmd,
             "list_commands": self.list_commands_cmd,
             "play": self.play_cmd,
-            "legal_moves": self.legal_moves_cmd,
             "score": self.score_cmd,
             "final_score": self.score_cmd,
             "legal_moves": self.legal_moves_cmd,
@@ -62,7 +62,9 @@ class GtpConnection():
             "use_pattern": self.use_pattern_cmd,            
             "random_simulation": self.random_simulation_cmd,
             "use_ucb": self.use_ucb_cmd,
-            "num_sim": self.num_sim_cmd,
+            "num_total_sim": self.num_sim_cmd,
+            "in_tree_knowledge": self.int_tree_knowledge_cmd,
+            "mcts_info": self.mcts_info_cmd
         }
 
         # used for argument checking
@@ -79,7 +81,9 @@ class GtpConnection():
             "use_pattern":(1, 'Usage: use_pattern INT'),
             "random_simulation":(1, 'Usage: random_simulation INT'),
             "use_ucb":(1, 'Usage: use_ucb INT'),
-            "num_sim":(1,'Usage: num_sim #(e.g. num_sim 100 )'),            
+            "num_total_sim":(1,'Usage: num_total_sim #(e.g. num_total_sim 100 )'),            
+            "in_tree_knowledge": (1,'Usage: in_tree_knowledge {0}'.format(' '.join(*self.in_tree_knowledge_options))),
+
         }
     
     def __del__(self):
@@ -184,6 +188,8 @@ class GtpConnection():
             the boardsize to reinitialize the state to
         """
         self.board.reset(size)
+        if self.go_engine.name == 'Go5':
+            self.go_engine.reset() 
 
     def protocol_version_cmd(self, args):
         """ Return the GTP protocol version being used (always 2) """
@@ -312,7 +318,8 @@ class GtpConnection():
         value = int(args[0])
         if value not in valid_values:
             self.error('Argument ({}) must be 0 or 1'.format(value))
-        self.go_engine.check_selfatari = value 
+        else:
+            self.go_engine.check_selfatari = value 
         self.respond()
 
     def use_pattern_cmd(self, args):
@@ -320,7 +327,8 @@ class GtpConnection():
         value = int(args[0])
         if value not in valid_values:
             self.error('Argument ({}) must be 0 or 1'.format(value))
-        self.go_engine.use_pattern = value 
+        else:
+            self.go_engine.use_pattern = value 
         self.respond()
 
     def use_ucb_cmd(self, args):
@@ -328,7 +336,8 @@ class GtpConnection():
         value = int(args[0])
         if value not in valid_values:
             self.error('Argument ({}) must be 0 or 1'.format(value))
-        self.go_engine.use_ucb = value 
+        else:
+            self.go_engine.use_ucb = value 
         self.respond()
 
     def random_simulation_cmd(self, args):
@@ -336,7 +345,8 @@ class GtpConnection():
         value = int(args[0])
         if value not in valid_values:
             self.error('Argument ({}) must be 0 or 1'.format(value))
-        self.go_engine.random_simulation = value 
+        else:
+            self.go_engine.random_simulation = value 
         self.respond()
 
     def num_sim_cmd(self, args):
@@ -420,70 +430,12 @@ class GtpConnection():
             self.respond(board_move)
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
-
-
-    # modified from _liberty_point in simple_board.py
-    def find_liberty_points(self, point, color):
-        group_points = [point]
-        liberty = 0
-        met_points = [point]
-        while group_points:
-            p=group_points.pop()
-            met_points.append(p)
-            neighbors = board.neighbors_dic[p]
-            for n in neighbors:
-                if n not in met_points:
-                    assert board.board[n] != BORDER
-                    if board.board[n] == color: 
-                        group_points.append(n)
-                    elif board.board[n]==EMPTY:
-                        liberty += 1
-                        single_lib_point = n
-                    met_points.append(n)
-        if liberty == 1:
-            return liberty, single_lib_point
-        return liberty, None   
-
-
-
-    # return True if can capture, otherwise return False
-    def atari_capture(self):
-        if self.board.last_move == None:
-            pass
-        else:
-            liberty, single_lib_point = self.find_liberty_points(self.board.last_move,self.board.current_player)
-            if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
-                self.response("AtariCapture", GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS))
-                return True
-        return False
-                
-        
-    def atari_defense(self):
-        #run away
-        moves = []
-        if self.board.last_move != None:
-            neighbors = self.board._neighbors(self.board.last_move)
-            for neighbor in neighbors:
-                if self.board.board[neighbor] == GoBoardUtil.opponent(self.board.current_player):
-                    neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,GoBoardUtil.opponent(self.board.current_player))
-                    if neighbor_lib == 1 and not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
-                        moves.append(single_lib_points)
-            
-        if len(moves)>0:
-            self.response("AtariDefense", GoBoardUtil.sorted_point_string(moves, self.board.NS))
-            return True
-        return False
-        
-
+            raise
 
     def policy_moves_cmd(self, args):
         """
         Return list of policy moves for the current_player of the board
         """
-        
-        print(self.atari_capture())
-        print(self.atari_defense())
-        
         policy_moves, type_of_move = GoBoardUtil.generate_all_policy_moves(self.board,
                                                         self.go_engine.use_pattern,
                                                         self.go_engine.check_selfatari)
@@ -509,6 +461,34 @@ class GtpConnection():
                          "pstring/Policy Moves/policy_moves\n"
                          "pstring/Random Moves/random_moves\n"
                          )
+        except Exception as e:
+            self.respond('Error: {}'.format(str(e)))
+    
+    def int_tree_knowledge_cmd(self, args):
+        value = args[0]
+        if (value not in self.in_tree_knowledge_options):
+            self.error('Argument ({0}) value must be in: {1} '.format(value,' '.join(*self.in_tree_knowledge_options)))
+        else:
+            self.go_engine.in_tree_knowledge = value
+        self.respond()
+
+    def mcts_info_cmd(self, args):
+        try:
+            root = self.go_engine.parent
+            if not root:
+                self.respond("No avaiable MCTS tree")
+                return
+            nodesAtDepth = self.go_engine.get_node_depth(root)
+            output="\n"
+            prev_nodes = 1
+            for i, count in enumerate(nodesAtDepth):
+                if count == 0:
+                    break
+                output += "Nodes at depth {}: {}, effective branching factor: {:.2}\n".format(i, count, count / prev_nodes)
+                prev_nodes = count
+            sys.stderr.write('{}\n'.format(output))
+            sys.stderr.flush()
+            self.respond()
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
 

@@ -4,7 +4,7 @@ utilpath = sys.path[0] + "/../util/"
 sys.path.append(utilpath)
 
 from gtp_connection import GtpConnection  
-from board_util import GoBoardUtil
+from board_util_go4 import GoBoardUtilGo4
 from simple_board import SimpleGoBoard
 from ucb import runUcb
 import numpy as np
@@ -15,7 +15,7 @@ import copy
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--sim', type=int, default=10, help='number of simulations per move, so total playouts=sim*legal_moves')
 parser.add_argument('--moveselect', type=str, default='simple', help='type of move selection: simple or ucb')
-parser.add_argument('--simulations', type=str, default='random', help='type of simulation policy: random or rulebased')
+parser.add_argument('--simulations', type=str, default='random', help='type of simulation policy: random or rulebased or probabilistic')
 parser.add_argument('--movefilter', action='store_true', default=False, help='whether use move filter or not')
 
 args = parser.parse_args()
@@ -33,7 +33,7 @@ def writeMoves(board, moves, count, numSimulations):
     for i in range(len(moves)):
         if moves[i] != None:
             x, y = board._point_to_coord(moves[i])
-            gtp_moves.append((GoBoardUtil.format_point((x, y)),
+            gtp_moves.append((GoBoardUtilGo4.format_point((x, y)),
                           float(count[i])/float(numSimulations)))
         else:
             gtp_moves.append(('Pass',float(count[i])/float(numSimulations)))
@@ -47,31 +47,31 @@ def select_best_move(board, moves, moveWins):
     return moves[max_child]
 
 
-class Go3Player(object):
+class Go4Player(object):
     """
     Flat Monte Carlo implementation that uses simulation for finding the best child of a given node
     """
 
     version = 0.22
-    name = "Go3"
+    name = "Go4"
     def __init__(self,num_simulation,size=7,limit=100):
         self.num_simulation = num_simulation
         self.limit = limit
         self.use_ucb = False if move_select =='simple' else True
-        self.random_simulation = True if simulations == 'random' else False
-        self.use_pattern = not self.random_simulation
+        self.random_simulation = simulations
+        self.use_pattern = True
         self.check_selfatari = move_filter
  
     def simulate(self, board, cboard, move, toplay):
-        GoBoardUtil.copyb2b(board,cboard)
+        GoBoardUtilGo4.copyb2b(board,cboard)
         assert cboard.board.all() == board.board.all()
         cboard.move(move, toplay)
-        opp = GoBoardUtil.opponent(toplay)
-        return GoBoardUtil.playGame(cboard,
+        opp = GoBoardUtilGo4.opponent(toplay)
+        return GoBoardUtilGo4.playGame(cboard,
                 opp,
                 komi=self.komi,
                 limit=self.limit,
-                random_simulation = self.random_simulation,
+                simulation_policy=simulations,
                 use_pattern = self.use_pattern,
                 check_selfatari= self.check_selfatari)
 
@@ -111,71 +111,20 @@ class Go3Player(object):
             name=self.__class__.__name__,
         )
 
-    # modified from _liberty_point in simple_board.py
-    def find_liberty_points(self, point, color):
-        group_points = [point]
-        liberty = 0
-        met_points = [point]
-        while group_points:
-            p=group_points.pop()
-            met_points.append(p)
-            neighbors = board.neighbors_dic[p]
-            for n in neighbors:
-                if n not in met_points:
-                    assert board.board[n] != BORDER
-                    if board.board[n] == color: 
-                        group_points.append(n)
-                    elif board.board[n]==EMPTY:
-                        liberty += 1
-                        single_lib_point = n
-                    met_points.append(n)
-        if liberty == 1:
-            return liberty, single_lib_point
-        return liberty, None   
-
-    # return True if can capture, otherwise return False
-    def atari_capture(self):
-        if self.board.last_move == None:
-            pass
-        else:
-            liberty, single_lib_point = self.find_liberty_points(self.board.last_move,self.board.current_player)
-            if liberty == 1 and self.board.check_legal(single_lib_point,self.board.current_player):
-                self.response("AtariCapture", GoBoardUtil.sorted_point_string([single_lib_point], self.board.NS))
-                return True
-        return False
-                
-        
-    def atari_defense(self):
-        #run away
-        moves = []
-        if self.board.last_move != None:
-            neighbors = self.board._neighbors(self.board.last_move)
-            for neighbor in neighbors:
-                if self.board.board[neighbor] == GoBoardUtil.opponent(self.board.current_player):
-                    neighbor_lib, single_lib_point = self.find_liberty_points(neighbor,GoBoardUtil.opponent(self.board.current_player))
-                    if neighbor_lib == 1 and not GoBoardUtil.selfatari_filter(self.board, single_lib_point, self.board.current_player):
-                        moves.append(single_lib_points)
-            
-        if len(moves)>0:
-            self.response("AtariDefense", GoBoardUtil.sorted_point_string(moves, self.board.NS))
-            return True
-        return False
-        
-
 def run():
     """
     start the gtp connection and wait for commands.
     """
     board = SimpleGoBoard(7)
-    con = GtpConnection(Go3Player(num_simulation), board)
+    con = GtpConnection(Go4Player(num_simulation), board)
     con.start_connection()
 
 if __name__=='__main__':
     if move_select != "simple" and move_select != "ucb":
         print('moveselect must be simple or ucb')
         sys.exit(0)
-    if simulations != "random" and simulations != "rulebased":
-        print('simulations must be random or rulebased')
+    if simulations != "random" and simulations != "rulebased" and simulations != "probabilistic":
+        print('simulations must be random or rulebased or probabilistic')
         sys.exit(0)
     run()
 
