@@ -210,7 +210,7 @@ class MCTS(object):
     def good_print(self, board, node, color, num_nodes):
         cboard = board.copy()
         sys.stderr.write("\nTaking a tour of selection policy in tree! \n\n")
-        sys.stderr.write(cboard.get_twoD_board())       
+        sys.stderr.write(str(cboard.get_twoD_board()))       
         sys.stderr.flush()
         while not node.is_leaf():
             if node._move != None:
@@ -254,7 +254,7 @@ class MCTS(object):
             pointString = cboard.point_to_string(move)
             cboard.move(move, color)
             sys.stderr.write("\nBoard in simulation after chosing child {} in tree. \n".format(pointString))
-            sys.stderr.write(cboard.get_twoD_board())
+            sys.stderr.write(str(cboard.get_twoD_board()))
             sys.stderr.flush()
             color = GoBoardUtilGo4.opponent(color) 
             node = next_node
