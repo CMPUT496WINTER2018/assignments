@@ -497,10 +497,10 @@ class GtpConnection():
     def prior_knowledge_cmd(self, args):
         #--use probabiities to initialize wins and simulation count for each node--
         moves, probs = self.generate_moves_with_feature_based_probs(self.board)
-        sims, wins = self.convert_probabilities_to_sims_and_wins(probs)
+        sims, wins, winrates = self.convert_probabilities_to_sims_and_wins(probs)
         root_sim, root_wins = self.compute_root_sim_and_win(sims, wins)
         # initialize nodes below
-        
+        self.sort_and_print_statistics(winrates,moves,wins,sims)
     
     @staticmethod
     def generate_moves_with_feature_based_probs(board):
@@ -524,6 +524,7 @@ class GtpConnection():
                 probs[m] = probs[m] / gamma_sum
         return moves, probs
     
+    
     def compute_root_sim_and_win(self, children_sims, children_wins):
         #--compute root's _black_wins and _n_visitss from children's properties--
         return sum(children_sims), sum(children_wins)
@@ -539,12 +540,30 @@ class GtpConnection():
         PRIOR_KNOWLEDGE_STRENGTH = 10
         sims = []
         wins = []
+        winrates = []
         p_max = max(prob_list)
         for p in prob_list:
             s = PRIOR_KNOWLEDGE_STRENGTH * (p/p_max)
-            w = s * (0.5 * p/p_max + 0.5)
+            wr = 0.5 * p/p_max + 0.5
+            w = wr * s
             sims.append(int(round(s)))
             wins.append(int(round(w)))
+            winrates.append(wr)
         
-        return sims, wins
-            
+        return sims, wins, winrates
+    
+    def sort_and_print_statistics(self, winrates, moves_index, wins, simulations):
+        moves_alphanumeric = []
+        for i in range(len(wins)):
+            moves_alphanumeric.append(self.board.point_to_string(i))
+        #https://stackoverflow.com/questions/2407398/how-to-merge-lists-into-a-list-of-tuples
+        t = list(zip(winrates, moves_alphanumeric, wins, simulations))
+        t = [t[i] for i in moves_index]
+        #https://stackoverflow.com/questions/18414995/how-can-i-sort-tuples-by-reverse-yet-breaking-ties-non-reverse-python
+        t.sort(key=lambda x:x[1])
+        t.sort(key=lambda x:x[0], reverse=True)        
+        print_string = ""
+        for tup in t:
+            print_string += tup[1] + " " + str(tup[2]) + " " + str(tup[3]) + " "
+        self.respond(print_string)
+        
