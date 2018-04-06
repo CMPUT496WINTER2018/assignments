@@ -494,7 +494,7 @@ class GtpConnection():
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
 
-    def prior_knowledge(self, args):
+    def prior_knowledge_cmd(self, args):
         #--use probabiities to initialize wins and simulation count for each node--
         moves, probs = self.generate_moves_with_feature_based_probs(self.board)
         sims, wins = self.convert_probabilities_to_sims_and_wins(probs)
@@ -503,7 +503,7 @@ class GtpConnection():
         
     
     @staticmethod
-    def generate_moves_with_feature_based_probs(self, board):
+    def generate_moves_with_feature_based_probs(board):
         from feature import Features_weight
         from feature import Feature
         assert len(Features_weight) != 0
@@ -548,9 +548,3 @@ class GtpConnection():
         
         return sims, wins
             
-            
-            
-        
-        
-        
-    
