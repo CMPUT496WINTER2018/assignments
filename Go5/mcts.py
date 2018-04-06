@@ -182,18 +182,39 @@ class MCTS(object):
         for n in range(num_simulation):
             board_copy = board.copy()
             self._playout(board_copy, toplay)
-        # choose a move that has the most visit 
-        moves_ls =  [(move, node._n_visits) for move, node in self._root._children.items()]
-        if not moves_ls:
-            return None
-        moves_ls = sorted(moves_ls,key=lambda i:i[1],reverse=True)
-        move = moves_ls[0]
-        self.print_stat(board, self._root, toplay)
-        #self.good_print(board,self._root,self.toplay,10)
-        if move[0] == PASS:
-            return None
-        assert board.check_legal(move[0], toplay)
-        return move[0]
+        
+        
+        print("hello world, am I doing a thing")
+		
+        
+        
+        
+         # implement the in_tree_knowledge knowledge check here
+        if in_tree_knowledge != 'None':     # checks to see that the flag was set 
+            # use knowledge to make move
+            print("12341234")
+            
+            #self.good_print(board_copy, self._root, self.toplay, 5)
+            # need to return a move 
+            return None # none == pass, so lets change this biotch 
+            
+        else:
+            # don't use knowledge to make move
+            # right now use dumb behavior 
+            # need to make it better though 
+            
+            # choose a move that has the most visit 
+            moves_ls =  [(move, node._n_visits) for move, node in self._root._children.items()]
+            if not moves_ls:
+                return None
+            moves_ls = sorted(moves_ls,key=lambda i:i[1],reverse=True)
+            move = moves_ls[0]
+            self.print_stat(board, self._root, toplay)
+            #self.good_print(board,self._root,self.toplay,10)
+            if move[0] == PASS:
+                return None
+            assert board.check_legal(move[0], toplay)
+            return move[0]
         
     def update_with_move(self, last_move):
         """

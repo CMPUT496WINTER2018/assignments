@@ -492,12 +492,11 @@ class GtpConnection():
             self.respond()
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
-	
-	def prior_knowledge_cmd(self, args):
-		""" """
-		try:
-			
-			
+    
+    def prior_knowledge_cmd(self, args):
+        """ """
+        try:
             self.respond('Not set up yet')
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
+        

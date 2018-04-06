@@ -5,6 +5,7 @@
 # https://github.com/pasky/michi/blob/master/michi.py
 
 from functools import reduce
+import collections
 
 pat3src = [  # 3x3 playout patterns; X,O are colors, x,o are their inverses
            ["XOX",  # hane pattern - enclosing hane
@@ -78,7 +79,55 @@ def pat3_expand(pat):
             for p in [p, pat_swapcolors(p)]
             for p in pat_wildcards(''.join(p))]
 
-pat3set = set([p.replace('O', 'x') for p in pat3src for p in pat3_expand(p)])
+pat3list = [p.replace('O', 'x') for p in pat3src for p in pat3_expand(p)]
+
+pat3set = set(pat3list)
+
+def switch_color(pattern):
+    p = pattern
+    p=p.replace('x', 'O')
+    p=p.replace('X', 'x')
+    p=p.replace('O', 'X')
+    return p
+
+def generate_pattern_index():
+    """
+    Assign all symmetric pattern with the same pattern index, which is used for learning.
+    There are three types of symmetry: rotation symmetry, reflection symmetry and color symmetry.
+    """
+    index = 0
+    p_index = {}
+    for p in pat3list:
+        if p in p_index:
+            continue
+        p1 = p[6]+p[3]+p[0]+p[7]+p[4]+p[1]+p[8]+p[5]+p[2]
+        p2 = p[8]+p[7]+p[6]+p[5]+p[4]+p[3]+p[2]+p[1]+p[0]
+        p3 = p[2]+p[5]+p[8]+p[1]+p[4]+p[7]+p[0]+p[3]+p[6]
+        p4 = p[6]+p[7]+p[8]+p[3]+p[4]+p[5]+p[0]+p[1]+p[2]
+        p5 = p[2]+p[1]+p[0]+p[5]+p[4]+p[3]+p[8]+p[7]+p[6]
+        p6 = p[0]+p[3]+p[6]+p[1]+p[4]+p[7]+p[2]+p[5]+p[8]
+        p7 = p[8]+p[5]+p[2]+p[7]+p[4]+p[1]+p[6]+p[3]+p[0]
+        p_index[p]=index
+        p_index[p1]=index
+        p_index[p2]=index
+        p_index[p3]=index
+        p_index[p4]=index
+        p_index[p5]=index
+        p_index[p6]=index
+        p_index[p7]=index
+
+        p_index[switch_color(p)]=index
+        p_index[switch_color(p1)]=index
+        p_index[switch_color(p2)]=index
+        p_index[switch_color(p3)]=index
+        p_index[switch_color(p4)]=index
+        p_index[switch_color(p5)]=index
+        p_index[switch_color(p6)]=index
+        p_index[switch_color(p7)]=index
+        index = index+1
+    return p_index
+
+patIndex = generate_pattern_index()
 
 
 
