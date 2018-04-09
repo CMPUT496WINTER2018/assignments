@@ -77,16 +77,42 @@ class Go5Player():
         self.MCTS.update_with_move(move)
 
     def get_move(self, board, toplay):
-        move = self.MCTS.get_move(board,
-                toplay,
-                komi=self.komi,
-                limit=self.limit,
-                check_selfatari=self.check_selfatari,
-                use_pattern=self.use_pattern,
-                num_simulation = self.num_simulation,
-                exploration = self.exploration,
-                simulation_policy = self.simulation_policy,
-                in_tree_knowledge = self.in_tree_knowledge)
+        
+        cboard = board.copy()
+        
+        moves, probs = GtpConnection.generate_moves_with_feature_based_probs(cboard)
+        sims, wins, winrates = GtpConnection.convert_probabilities_to_sims_and_wins(probs, probs)
+        root_sim, root_wins = GtpConnection.compute_root_sim_and_win(sims, sims, wins)
+        # initialize nodes below
+        stmt = GtpConnection.give_sorted_statistics(winrates,winrates,moves,wins,sims)
+        
+        stmt = stmt.split()
+        move = stmt[0]
+        
+        print("move = ", move, " !! stmt = ", stmt)
+        
+        if move.lower() == "pass":
+            move = None 
+        
+        # move = self.MCTS.get_move(board,
+                # toplay,
+                # komi=self.komi,
+                # limit=self.limit,
+                # check_selfatari=self.check_selfatari,
+                # use_pattern=self.use_pattern,
+                # num_simulation = self.num_simulation,
+                # exploration = self.exploration,
+                # simulation_policy = self.simulation_policy,
+                # in_tree_knowledge = self.in_tree_knowledge)
+        
+        
+        # from feature import Features_weight
+        # from feature import Feature
+        # all_board_features = Feature.find_all_features(board)
+        # gamma = Feature.compute_move_gamma(Features_weight, all_board_features[move])
+        # print("gamma = ", gamma)
+        
+        
         self.update(move)
         return move
     
