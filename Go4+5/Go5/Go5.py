@@ -78,41 +78,16 @@ class Go5Player():
 
     def get_move(self, board, toplay):
         
-        cboard = board.copy()
-        
-        moves, probs = GtpConnection.generate_moves_with_feature_based_probs(cboard)
-        sims, wins, winrates = GtpConnection.convert_probabilities_to_sims_and_wins(probs, probs)
-        root_sim, root_wins = GtpConnection.compute_root_sim_and_win(sims, sims, wins)
-        # initialize nodes below
-        stmt = GtpConnection.give_sorted_statistics(winrates,winrates,moves,wins,sims)
-        
-        stmt = stmt.split()
-        move = stmt[0]
-        
-        print("move = ", move, " !! stmt = ", stmt)
-        
-        if move.lower() == "pass":
-            move = None 
-        
-        # move = self.MCTS.get_move(board,
-                # toplay,
-                # komi=self.komi,
-                # limit=self.limit,
-                # check_selfatari=self.check_selfatari,
-                # use_pattern=self.use_pattern,
-                # num_simulation = self.num_simulation,
-                # exploration = self.exploration,
-                # simulation_policy = self.simulation_policy,
-                # in_tree_knowledge = self.in_tree_knowledge)
-        
-        
-        # from feature import Features_weight
-        # from feature import Feature
-        # all_board_features = Feature.find_all_features(board)
-        # gamma = Feature.compute_move_gamma(Features_weight, all_board_features[move])
-        # print("gamma = ", gamma)
-        
-        
+        move = self.MCTS.get_move(board,
+                toplay,
+                komi=self.komi,
+                limit=self.limit,
+                check_selfatari=self.check_selfatari,
+                use_pattern=self.use_pattern,
+                num_simulation = self.num_simulation,
+                exploration = self.exploration,
+                simulation_policy = self.simulation_policy,
+                in_tree_knowledge = self.in_tree_knowledge)
         self.update(move)
         return move
     
@@ -132,13 +107,52 @@ class Go5Player():
 class GtpConnectionBUTBETTER(GtpConnection):
     
     def genmove_cmd(self, args):
-        if self.go_engine.in_tree_knowledge == "probabilistic":
-
-            #initialize nodes
+        if self.go_engine.in_tree_knowledge.lower() == "probabilistic":
             
+            color = self.board.current_player
+            color = GoBoardUtilGo4.color_to_int(args[0])
 
+            moves, probs = GtpConnection.generate_moves_with_feature_based_probs(self.board)
+            sims, wins, winrates = GtpConnection.convert_probabilities_to_sims_and_wins(self, probs)
+            stmt = self.get_sorted_statistics(winrates,moves,wins,sims)
+            stmt = stmt.split(" ")
+            move = stmt[0].strip()
+            
+            if move.lower() == "pass":
+                self.respond("pass")
+                return
+                
+            move = int(move)
+            if not self.board.check_legal(move, color):
+                move = self.board._point_to_coord(move)
+                board_move = GoBoardUtilGo4.format_point(move)
+                self.respond("Illegal move: {}".format(board_move))
+                raise RuntimeError("Illegal move given by engine")
+
+            # move is legal; play it
+            self.board.move(move,color)
+
+            self.respond(self.board.point_to_string(move))
+            
         else:
-            self.genmove_cmd(self, args) 
+        
+            GtpConnection.genmove_cmd(self, args) 
+            
+    def get_sorted_statistics(self, winrates, moves_index, wins, simulations):
+        moves_alphanumeric = []
+        for i in range(len(wins)):
+            # moves_alphanumeric.append(self.board.point_to_string(i))
+            moves_alphanumeric.append(i)
+        #https://stackoverflow.com/questions/2407398/how-to-merge-lists-into-a-list-of-tuples
+        t = list(zip(winrates, moves_alphanumeric, wins, simulations))
+        t = [t[i] for i in moves_index]
+        #https://stackoverflow.com/questions/18414995/how-can-i-sort-tuples-by-reverse-yet-breaking-ties-non-reverse-python
+        t.sort(key=lambda x:x[1])
+        t.sort(key=lambda x:x[0], reverse=True)        
+        print_string = ""
+        for tup in t:
+            print_string += str(tup[1]) + " " + str(tup[2]) + " " + str(tup[3]) + " "
+        return print_string
     
 def run():
     """
@@ -148,8 +162,6 @@ def run():
     con = GtpConnectionBUTBETTER(Go5Player(num_simulation), board)
     con.start_connection()
    
-
-
 if __name__=='__main__':
     if simulations != "random" and simulations != "rulebased" and simulations != "probabilistic":
         sys.stderr.write('simulations must be random or rulebased or probabilistic \n')
