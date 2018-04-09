@@ -107,10 +107,8 @@ class GtpConnectionBUTBETTER(GtpConnection):
     
     def genmove_cmd(self, args):
         if self.go_engine.in_tree_knowledge == "probabilistic":
-
             #initialize nodes
-            
-
+            pass
         else:
             self.genmove_cmd(self, args) 
     

@@ -511,13 +511,18 @@ class GtpConnection():
         gamma_sum = 0.0
         empty_points = board.get_empty_points()
         color = board.current_player
-        probs = np.zeros(board.maxpoint)
+        probs = np.zeros(board.maxpoint+1)
         all_board_features = Feature.find_all_features(board)
         for move in empty_points:
             if board.check_legal(move, color) and not board.is_eye(move, color):
                 moves.append(move)
                 probs[move] = Feature.compute_move_gamma(Features_weight, all_board_features[move])
                 gamma_sum += probs[move]
+                
+        moves.append(-1)
+        probs[-1] = Feature.compute_move_gamma(Features_weight, all_board_features["PASS"])
+        gamma_sum += probs[-1]        
+        
         if len(moves) != 0:
             assert gamma_sum != 0.0
             for m in moves:
@@ -554,8 +559,9 @@ class GtpConnection():
     
     def sort_and_print_statistics(self, winrates, moves_index, wins, simulations):
         moves_alphanumeric = []
-        for i in range(len(wins)):
+        for i in range(len(wins)-1):
             moves_alphanumeric.append(self.board.point_to_string(i))
+        moves_alphanumeric.append("Pass")
         #https://stackoverflow.com/questions/2407398/how-to-merge-lists-into-a-list-of-tuples
         t = list(zip(winrates, moves_alphanumeric, wins, simulations))
         t = [t[i] for i in moves_index]
