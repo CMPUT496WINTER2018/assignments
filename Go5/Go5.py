@@ -77,7 +77,6 @@ class Go5Player():
         self.MCTS.update_with_move(move)
 
     def get_move(self, board, toplay):
-        
         move = self.MCTS.get_move(board,
                 toplay,
                 komi=self.komi,
@@ -104,72 +103,18 @@ class Go5Player():
             name=self.__class__.__name__,
         )
 
-class GtpConnectionBUTBETTER(GtpConnection):
-    
-    def genmove_cmd(self, args):
-        if self.go_engine.in_tree_knowledge.lower() == "probabilistic":
-            
-            color = self.board.current_player
-            color = GoBoardUtilGo4.color_to_int(args[0])
-
-            moves, probs = GtpConnection.generate_moves_with_feature_based_probs(self.board)
-            sims, wins, winrates = GtpConnection.convert_probabilities_to_sims_and_wins(self, probs)
-            stmt = self.get_sorted_statistics(winrates,moves,wins,sims)
-            stmt = stmt.split(" ")
-            move = stmt[0].strip()
-            
-            if move.lower() == "pass":
-                self.respond("pass")
-                return
-                
-            move = int(move)
-            if not self.board.check_legal(move, color):
-                move = self.board._point_to_coord(move)
-                board_move = GoBoardUtilGo4.format_point(move)
-                self.respond("Illegal move: {}".format(board_move))
-                raise RuntimeError("Illegal move given by engine")
-
-            # move is legal; play it
-            self.board.move(move,color)
-
-            self.respond(self.board.point_to_string(move))
-            
-        else:
-        
-            GtpConnection.genmove_cmd(self, args) 
-            
-    def get_sorted_statistics(self, winrates, moves_index, wins, simulations):
-        moves_alphanumeric = []
-        for i in range(len(wins)):
-            # moves_alphanumeric.append(self.board.point_to_string(i))
-            moves_alphanumeric.append(i)
-        #https://stackoverflow.com/questions/2407398/how-to-merge-lists-into-a-list-of-tuples
-        t = list(zip(winrates, moves_alphanumeric, wins, simulations))
-        t = [t[i] for i in moves_index]
-        #https://stackoverflow.com/questions/18414995/how-can-i-sort-tuples-by-reverse-yet-breaking-ties-non-reverse-python
-        t.sort(key=lambda x:x[1])
-        t.sort(key=lambda x:x[0], reverse=True)        
-        print_string = ""
-        for tup in t:
-            print_string += str(tup[1]) + " " + str(tup[2]) + " " + str(tup[3]) + " "
-        return print_string
-    
 def run():
     """
     start the gtp connection and wait for commands.
     """
     board = SimpleGoBoard(7)
-    con = GtpConnectionBUTBETTER(Go5Player(num_simulation), board)
+    con = GtpConnection(Go5Player(num_simulation), board)
     con.start_connection()
-   
+
 if __name__=='__main__':
     if simulations != "random" and simulations != "rulebased" and simulations != "probabilistic":
         sys.stderr.write('simulations must be random or rulebased or probabilistic \n')
         sys.stderr.flush()
         sys.exit(0)
     run()
-
-
-    
-    
 

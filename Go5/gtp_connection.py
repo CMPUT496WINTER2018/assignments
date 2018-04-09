@@ -33,16 +33,10 @@ class GtpConnection():
         self.file = open(outfile, mode)
         #self.stderr = sys.stderr
         sys.stdout = self
-<<<<<<< HEAD
-        self.go_engine = go_engine
-        self.komi = 0
-        self.board = board
-=======
         self.go_engine = go_engine 
         self.go_engine.komi = 0.5
         self.board = board
         self.in_tree_knowledge_options = ["probabilistic" ]
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
         self.commands = {
             "protocol_version": self.protocol_version_cmd,
             "quit": self.quit_cmd,
@@ -57,9 +51,6 @@ class GtpConnection():
             "genmove": self.genmove_cmd,
             "list_commands": self.list_commands_cmd,
             "play": self.play_cmd,
-<<<<<<< HEAD
-            "legal_moves": self.legal_moves_cmd
-=======
             "score": self.score_cmd,
             "final_score": self.score_cmd,
             "legal_moves": self.legal_moves_cmd,
@@ -73,8 +64,8 @@ class GtpConnection():
             "use_ucb": self.use_ucb_cmd,
             "num_total_sim": self.num_sim_cmd,
             "in_tree_knowledge": self.int_tree_knowledge_cmd,
-            "mcts_info": self.mcts_info_cmd
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
+            "mcts_info": self.mcts_info_cmd,
+			"prior_knowledge": self.prior_knowledge_cmd
         }
 
         # used for argument checking
@@ -86,9 +77,6 @@ class GtpConnection():
             "set_free_handicap": (1, 'Usage: set_free_handicap MOVE (e.g. A4)'),
             "genmove": (1, 'Usage: genmove {w,b}'),
             "play": (2, 'Usage: play {b,w} MOVE'),
-<<<<<<< HEAD
-            "legal_moves": (1, 'Usage: legal_moves {w,b}')
-=======
             "legal_moves": (1, 'Usage: legal_moves {w,b}'),
             "selfatari":(1, 'Usage: selfatari INT'),
             "use_pattern":(1, 'Usage: use_pattern INT'),
@@ -97,7 +85,6 @@ class GtpConnection():
             "num_total_sim":(1,'Usage: num_total_sim #(e.g. num_total_sim 100 )'),            
             "in_tree_knowledge": (1,'Usage: in_tree_knowledge {0}'.format(' '.join(*self.in_tree_knowledge_options))),
 
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
         }
     
     def __del__(self):
@@ -160,11 +147,7 @@ class GtpConnection():
 
     def arg_error(self, cmd, argnum):
         """
-<<<<<<< HEAD
-        checker funciton for the number of arguments given to a command
-=======
         checker function for the number of arguments given to a command
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
 
         Arguments
         ---------
@@ -206,11 +189,8 @@ class GtpConnection():
             the boardsize to reinitialize the state to
         """
         self.board.reset(size)
-<<<<<<< HEAD
-=======
         if self.go_engine.name == 'Go5':
             self.go_engine.reset() 
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
 
     def protocol_version_cmd(self, args):
         """ Return the GTP protocol version being used (always 2) """
@@ -258,11 +238,7 @@ class GtpConnection():
         args[0] : float
             komi value
         """
-<<<<<<< HEAD
-        self.komi = float(args[0])
-=======
         self.go_engine.komi = float(args[0])
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
         self.respond()
 
     def known_command_cmd(self, args):
@@ -300,8 +276,6 @@ class GtpConnection():
                 self.debug_msg("Illegal Move: {}\nBoard:\n{}\n".format(move, str(self.board.get_twoD_board())))
         self.respond()
 
-<<<<<<< HEAD
-=======
     def legal_moves_for_toPlay_cmd(self, args):
         try:
             color= self.board.current_player
@@ -310,7 +284,6 @@ class GtpConnection():
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
 
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
     def legal_moves_cmd(self, args):
         """
         list legal moves for the given color
@@ -330,8 +303,6 @@ class GtpConnection():
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
 
-<<<<<<< HEAD
-=======
     def score_cmd(self, args):
         komi = self.go_engine.komi
         winner, score = self.board.score(komi)
@@ -383,7 +354,6 @@ class GtpConnection():
         self.go_engine.num_simulation = int(args[0])
         self.respond()
 
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
     def play_cmd(self, args):
         """
         play a move as the given color
@@ -461,8 +431,6 @@ class GtpConnection():
             self.respond(board_move)
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
-<<<<<<< HEAD
-=======
             raise
 
     def policy_moves_cmd(self, args):
@@ -524,5 +492,11 @@ class GtpConnection():
             self.respond()
         except Exception as e:
             self.respond('Error: {}'.format(str(e)))
->>>>>>> 7ed8c9933b2f78b064b7cf0bb4848c8f9e761f4d
-
+    
+    def prior_knowledge_cmd(self, args):
+        """ """
+        try:
+            self.respond('Not set up yet')
+        except Exception as e:
+            self.respond('Error: {}'.format(str(e)))
+        
