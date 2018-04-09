@@ -129,13 +129,26 @@ class Go5Player():
             name=self.__class__.__name__,
         )
 
+class GtpConnectionBUTBETTER(GtpConnection):
+    
+    def genmove_cmd(self, args):
+        if self.go_engine.in_tree_knowledge == "probabilistic":
+
+            #initialize nodes
+            
+
+        else:
+            self.genmove_cmd(self, args) 
+    
 def run():
     """
     start the gtp connection and wait for commands.
     """
     board = SimpleGoBoard(7)
-    con = GtpConnection(Go5Player(num_simulation), board)
+    con = GtpConnectionBUTBETTER(Go5Player(num_simulation), board)
     con.start_connection()
+   
+
 
 if __name__=='__main__':
     if simulations != "random" and simulations != "rulebased" and simulations != "probabilistic":
@@ -143,4 +156,8 @@ if __name__=='__main__':
         sys.stderr.flush()
         sys.exit(0)
     run()
+
+
+    
+    
 
