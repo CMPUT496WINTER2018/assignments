@@ -498,7 +498,7 @@ class GtpConnection():
         #--use probabiities to initialize wins and simulation count for each node--
         moves, probs = self.generate_moves_with_feature_based_probs(self.board)
         sims, wins, winrates = self.convert_probabilities_to_sims_and_wins(probs)
-        root_sim, root_wins = self.compute_root_sim_and_win(sims, wins)
+        root_sim, root_wins = self.compute_root_sim_and_win(sims, wins, moves)
         # initialize nodes below
         self.sort_and_print_statistics(winrates,moves,wins,sims)
     
@@ -530,8 +530,11 @@ class GtpConnection():
         return moves, probs
     
     
-    def compute_root_sim_and_win(self, children_sims, children_wins):
+    def compute_root_sim_and_win(self, children_sims, children_wins, moves_index):
         #--compute root's _black_wins and _n_visitss from children's properties--
+        children_sims = [children_sims[i] for i in moves_index]
+        children_wins = [children_wins[i] for i in moves_index]
+        print(children_sims, children_wins)
         return sum(children_sims), sum(children_wins)
     
     def convert_probabilities_to_sims_and_wins(self, prob_list):
