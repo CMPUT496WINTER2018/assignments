@@ -534,7 +534,6 @@ class GtpConnection():
         #--compute root's _black_wins and _n_visitss from children's properties--
         children_sims = [children_sims[i] for i in moves_index]
         children_wins = [children_wins[i] for i in moves_index]
-        print(children_sims, children_wins)
         return sum(children_sims), sum(children_wins)
     
     def convert_probabilities_to_sims_and_wins(self, prob_list):
